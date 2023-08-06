@@ -1,49 +1,45 @@
-# Indy Survey Tool<!-- omit from toc -->
+# Immersive Analytics Design Space Survey Website
+This repository hosts the code, data, and deployment for the companion website for the paper: [Unraveling the Design Space of Immersive Analytics:
+A Systematic Review](link). The Survey itself is a fork version of the [Indy Survey Tool](https://github.com/VisDunneRight/Indy-Survey-Tool), a framework to unearth correlations in survey data.
 
-This is the repository for Indy Survey Tool, a framework to unearth correlations in survey data. Our framework allows for easily importing papers, and creates a beautiful companion webpage for your survey, with visualizations and filtering tools which are customizable to your needs. The webpage allows anyone to submit information about new papers to be included in the survey in order to keep data relevant even after publication.
+If you found this website useful for your research, please make sure to cite it. 
 
-Survey webpages built using Indy Survey Tool:
-- [Evaluating Graph Layout Algorithms: A Systematic Review of Methods and Best Practices](https://visdunneright.github.io/gd-comp-eval/) 
-- [Immersive Analystics](https://github.com/VisDunneRight/IA-Survey)
-
-
-## Table of Contents<!-- omit from toc -->
-
-- [Getting Started](#getting-started)
+- [Adding papers](#contributing)
 - [Running the Webpage](#running-the-webpage)
   - [`npm install`](#npm-install)
   - [`npm run prepare`](#npm-run-prepare)
   - [`npm run dev`](#npm-run-dev)
-- [Uploading Survey Papers](#uploading-survey-papers)
-  - [Upload in Bulk](#upload-in-bulk)
-  - [Manually Upload Paper](#manually-upload-paper)
-  - [Adding a New Paper Categorization](#adding-a-new-paper-categorization)
-- [Configuring the Webpage](#configuring-the-webpage)
-  - [Overview of survey-config.json](#overview-of-survey-configjson)
-  - [Adding a Filter Group](#adding-a-filter-group)
-  - [Modifying the Paper Detail View](#modifying-the-paper-detail-view)
-  - [Modifying the Paper Summary View](#modifying-the-paper-summary-view)
-  - [Modifying the Title \& Top Panel Information](#modifying-the-title--top-panel-information)
-  - [Modifying the Webpage Color](#modifying-the-webpage-color)
-  - [Linking to Other Surveys](#linking-to-other-surveys)
+    
+##  Contributing
+If you would like to add relevant papers to the survey website database, follow these steps. We ask that you please read our paper first to familiarize yourself with our categorization dimensions, categories, and codes.
 
-## Getting Started
+1. Hit the ADD Entry button at the top right of the website. This will open a popup with instructions and a form.
+  ![image](https://github.com/VisDunneRight/IA-Survey/assets/7236305/f063bcfd-245a-467f-97e7-b343addbe8ea)
 
-To create your survey webpage:
+2. Fill out the form. Any new tags can be added by typing into the field and selecting add from the dropdown.
+  <img src="https://github.com/VisDunneRight/IA-Survey/assets/7236305/602983b2-108d-4fff-99aa-f2a40c3fb4b3" atl="Image of form" width="400">
 
-1. Fork the repo by clicking "Fork" near the top right of the GitHub interface.
+  ![image](https://github.com/VisDunneRight/IA-Survey/assets/7236305/87b21651-e6c7-4116-85b4-c5a47021782d)
 
-2. Clone your new repository to your local machine. E.g., in your terminal / command prompt `CD` to where you want this the folder for the repo to be. Then run
+4. Hit the Copy to Clipboard.
 
-    ```bash
-    git clone <THE_NEW_REPO_URL>
-    ```
+  ![image](https://github.com/VisDunneRight/IA-Survey/assets/7236305/fde1ab7b-1fd0-4cea-9029-272c1cc37238)
 
-    `CD` or open a terminal / command prompt window into the cloned folder.
+6. From this repo, navigate to the actions tab -> Add New Paper -> Run workflow
+
+7. Paste the copied JSON string into the form and click "Run workflow" This will trigger an action that will create a pull request
+
+![image](https://github.com/VisDunneRight/IA-Survey/assets/13991410/4c998bab-fa62-4779-9a03-b1a0d351d344)
+
+8. The repo maintainers will review the pull request and respond with any follow-up or discussion questions to ensure the new paper is relevant to the survey and the information is accurate and consistent. Pull requests will stay open for at least 7 days to give maintainers a chance to review. 
+
+9. Once the pull request is accepted, the survey website will automatically rebuild to reflect the new paper. 
+
+10. If you submit a successful pull request, you will be given the option to become one of the repo maintainers to be able to review future new paper additions. We ask that maintainers try not to review their own pull requests. 
 
 ## Running the Webpage
-
-In the project directory, you can run:
+If you decide to clone or fork this project, you can run it locally as follow.
+In the project directory, you can run the following:
 
 ### `npm install`
 
@@ -58,142 +54,3 @@ Run this command prior to `npm run dev` to update the webpage with any changes.
 Runs the site locally in development mode.<br />
 It should provide a link to localhost to view the site in your browser.
 
-## Uploading Survey Papers
-
-The easiest method of uploading survey papers in bulk is using our CSV converter, but it is also possible to add papers individually.
-
-### Upload in Bulk
-
-1. Export your list of survey papers in CSV format. E.g.:
-   * In Zotero, right-click the collection -> "Export Collection" -> Format: "CSV"
-   * In Airtable, under the name of the view select "Download CSV"
-   * In Notion, click the ... icon -> "Export" -> Export format: "Markdown & CSV"
-2. Save the file to the root directory of this project with the name [Survey-Info.csv](Survey-Info.csv).
-3. Edit the headers of the CSV file, if necessary. Note that at a minimum, `Name`, `Year`, `Authors` (comma separated), `DOI`, and `Bibtex` are required. Make sure the headers match exactly. See [Adding a New Paper Categorization](#adding-a-new-paper-categorization) for more information about defining more categories for the papers.
-4. Run the following code to generate a file named [survey-data.json]().
-    ```bash
-    python3 convertCSVtoJson.py
-    ```
-5. Move this file to [src/data](src/data) for the webpage to display the papers. This is to allow you to make updates to the file without any previous changes being overwritten.
-
-### Manually Upload Paper
-
-To add papers one-by-one, open [src/data/survey-data.json](src/data/survey-data.json). Then, add a new paper object to the list under the `"data"` tag using the template below as a guide. Note that the `"Name"`, `"Year"`, `"Authors"`, `"DOI"`, and `"Bibtex"` tags are required, but more can be added.
-```json
-"data": [  // array of paper objects
-    {
-        "Name"   : "[Poster] Visualization of solar radiation data in augmented reality",
-        "Year"   : "2014",
-        "Bibtex" : "'@INPROCEEDINGS{6948437,\n  author={Beatriz Carmo, Maria and Cl\u00e1udio, ....",
-        "DOI"    : "10.1109/ISMAR.2014.6948437",
-        "Authors": [
-            "M. Beatriz Carmo; A. P. Cl\u00e1udio; A. Ferreira; A. P. Afonso; ...."
-        ]
-    },
-]
-```
-
-### Adding a New Paper Categorization
-
-If your survey papers are categorized by some tag, `<NEW_TAG>`, you should follow these steps to ensure it is displayed properly on the webpage:
-
-1. Open [src/data/survey-data.json](src/data/survey-data.json).
-2. Under `"meta"`, add a new object defining the properties of this tag:
-    ```json
-        {
-            "name": "NEW_TAG",
-            "type": "MultiSelect"  // categorization type: String or MultiSelect
-        },
-    ```
-    Note that the type of the tag affects what a user of your webpage sees when they go to add a new paper using the "Add Entry" button at the top right. `String` allows the user to enter a string, whereas `MultiSelect` gives the user a dropdown of options to choose from. The options will be all the values in current papers.
-3. Add the same information to the `includeProp` dictionary at the top of [convertCSVtoJson.py](convertCSVtoJson.py) if you intend to use the [bulk paper import](#upload-in-bulk) method.
-
-## Configuring the Webpage
-
-Many aspects of the webpage, including colors, filter groups, tags on papers, and displayed icons are fully customizable.
-
-### Overview of survey-config.json
-
-[src/data/survey-config.json](src/data/survey-config.json) contains most of the configuration options for the webpage. It is structured as follows:
-
-```json
-{
-    "filterBy"   : [],  // defines custom categories that can be used to filter the papers
-    "detailView" : [],  // information displayed when a paper is clicked by the user
-    "summaryView": [],  // information displayed in the paper view center panel
-    "topView"    : []   // information displayed in the top panel of the webpage
-}
-```
-
-### Adding a Filter Group
-
-Filter groups are comprised of parts of one or more paper categories. These filter groups are used to control the axes for the matrix visualization on the right-hand panel. In [src/data/survey-config.json](src/data/survey-config.json), under `"filterBy"`, add a new object to the list defining the group, e.g.:
-```json
-    {
-        "groupName": "Theory and Contribution",
-        "categories":
-        [
-            {
-                "name": "Opportunity",
-                "values": [
-                    "Engagement",
-                    "Collaboration",
-                    "Situated Analytics",
-                    "Embodied Data Exploration",
-                    "Spatial Immersion",
-                    "Multi-Sensory Presentation"
-                ]
-            },
-            {
-                "name": "Contribution Type",
-                "values": [
-                    "Technique",
-                    "Evaluation",
-                    "Design Study",
-                    "System"
-                ]
-            }
-        ]
-    },
-```
-
-* `"groupName"` will be the name displayed for the group on the left panel
-* `"categories"` is a list of objects, where each object has:
-  * `"name"`, a paper categorization property defined in `"meta"`—see [adding a new paper categorization](#adding-a-new-paper-categorization)
-  * `"values"`, an array of strings which are possible values for the property `"name"`
-
-### Modifying the Paper Detail View
-
-To change what is displayed when a user clicks on a specific paper, open [src/data/survey-config.json](src/data/survey-config.json) and navigate to the `"detailView"` tag. Under `"show"`, a list of paper properties to be displayed when the paper is clicked can be provided. By default, the following properties are shown:
-
-* Name
-* Authors
-* Year
-* DOI
-* BibTeX
-* Image
-
-If Image is not provided, it will not be displayed in the Detail View. Image points to name and location. Generally it will look like `" "image": "/images/ImageName.png" "` with the corresponding image placed in the /public/images/ folder.
-
-### Modifying the Paper Summary View
-
-To change what is displayed in the central panel paper view, open [src/data/survey-config.json](src/data/survey-config.json) and navigate to the `"summaryView"` tag. Under `"show"`, a list of paper properties to be displayed when the paper is clicked can be provided. By default, only title and authors are shown. To enable images to be shown, add `""showImg": true,"` to `"summaryView"`. 
-
-### Modifying the Title & Top Panel Information
-
-Open [src/data/survey-config.json](src/data/survey-config.json) and navigate to the `"topView"` tag. Here, important information displayed in the top panel can be modified:
-
-* `"title"`: title of the survey displayed at the top of the webpage
-* `"description"`: survey description
-* `"authors"`: survey authors
-* `"addEntry"`:
-  * `"description"`: text displayed at the top of the Add Entry window
-  * `"github"`: link to the survey GitHub repository, where users may open a GitHub issue to request that a paper be added
-
-### Modifying the Webpage Color
-
-To change the color palette of the webpage, open [src/theme/_smui-theme.scss](src/theme/_smui-theme.scss). The `$primary` and `$secondary` variables are the colors used for interactive elements of the webpage like buttons and the time range selector. The `$surface` and `$background` variables are the color of the surface elements and the page background.
-
-### Linking to Other Surveys
-
-Links to other surveys can be added, which appear when users click on the "Other Surveys" option at the top right of the webpage. To add a survey, open [src/data/other-surveys.json](src/data/other-surveys.json) and add a new object, with the name of the survey and a link to the webpage.
