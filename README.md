@@ -1,6 +1,6 @@
 # Immersive Analytics Design Space Survey Website
 This repository hosts the code, data, and deployment for the companion website for the paper: [Unraveling the Design Space of Immersive Analytics:
-A Systematic Review](link). The Survey itself is a fork version of the [Indy Survey Tool](https://github.com/VisDunneRight/Indy-Survey-Tool), a framework to unearth correlations in survey data.
+A Systematic Review](https://osf.io/5ewaj/). The Survey website source codeis a fork version of the [Indy Survey Tool](https://github.com/VisDunneRight/Indy-Survey-Tool), a framework to unearth correlations in survey data.
 
 If you found this website useful for your research, please make sure to cite it. 
 
