@@ -315,13 +315,13 @@
     "show":[]
   },
   "topView": {
-    "title":"Immersive Analytics",
-    "description":"Unraveling the Design Space of Immersive Analytics Systems and Visualizations: A Systematic Literature Review.",
-    "authors":"Provided by:",
+    "title":"Unraveling the Design Space of Immersive Analytics",
+    "description":"This repository hosts the code, data, and deployment for the companion website for the paper: Unraveling the Design Space of Immersive Analytics: A Systematic Review.",
+    "authors":"Originally published at IEEE VIS 2023",
     "addEntry": {
       "description":["If you are an author of a peer-reviewed published work on Immersive Analytics that presents a contribution missing in our browser, please feel free to submit an entry. Filling out the form below will create a json entry that can be added as an issue to the github together with a 100x100px PNG thumbail.",
                      "The URL provided in the form should point to a DOI. Also, please acknowledge the fact that by submitting an entry, you provide us with permissions to use your image on this resource and in related publications."],
-      "github":""
+      "github":"https://github.com/VisDunneRight/IADesign.Space"
     }
   }
 }
