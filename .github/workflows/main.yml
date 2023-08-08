@@ -54,7 +54,7 @@ jobs:
           body: |
             New Paper Request
             ```json
-            '${{ toJSON(github.event.inputs.JSON) }}'
+                ${{ toJSON(github.event.inputs.JSON) }}
             ```
 
             
