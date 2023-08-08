@@ -53,13 +53,9 @@ jobs:
           title: 'New Paper Request: ${{ fromJSON(github.event.inputs.JSON).ShortTitle}}'
           body: |
             New Paper Request
-              - Title: ${{ toJSON(github.event.inputs.JSON).title}}
-              - Authors: ${{ toJSON(github.event.inputs.JSON).authors}}
-              - Year: ${{ toJSON(github.event.inputs.JSON).year}}
-              - Opportunity: '${{ toJSON(github.event.inputs.JSON).Opportunity }}'
-              - Contribution Type: ${{ toJSON(github.event.inputs.JSON)['Contribution Type']}}
-              '${{ toJSON(github.event.inputs.JSON) }}'
-        
+            ```json
+            '${{ toJSON(github.event.inputs.JSON) }}'
+            ```
 
             
           
