@@ -42,9 +42,14 @@ jobs:
           # path to JSON file to attempt to parse
           path-to-file: ${{ github.workspace }}/src/data/survey-data.json
           
-      - name: Create Pull Request
+      - uses: buildingcash/json-to-markdown-table-action@v1
+        id: table
+        with:
+          json: fromJSON(github.event.inputs.JSON)
           # You may pin to the exact commit or the version.
           # uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38
+          
+      - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5.0.2
         with:
           delete-branch: true
@@ -60,6 +65,7 @@ jobs:
               - Year: ${{ fromJSON(github.event.inputs.JSON).year}}
               - Opportunity: '${{ fromJSON(github.event.inputs.JSON).Opportunity }}'
               - Contribution Type: ${{ fromJSON(github.event.inputs.JSON)['Contribution Type']}}
+            ${{ steps.table.outputs.table }}
 
             
           
