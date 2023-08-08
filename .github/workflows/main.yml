@@ -53,7 +53,7 @@ jobs:
           title: 'New Paper Request: ${{ fromJSON(github.event.inputs.JSON).ShortTitle}}'
           body: |
             New Paper Request
-             ${{ toJSON(github.event.inputs.JSON).title }}
+             ${{ toJSON(github.event.inputs.JSON) }}
             
 
             
