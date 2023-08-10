@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   build:
-    if: ${{ github.event.label.name == 'new_paper' }}
+    if: ${{ github.event.label.name == 'New Paper' }}
     runs-on: ubuntu-latest
     steps: 
       - name: Checkout Repo
