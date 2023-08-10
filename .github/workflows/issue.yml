@@ -46,7 +46,7 @@ jobs:
           delete-branch: true
           commit-message: 'New Paper Request: ${{ fromJSON(github.event.issue.body).ShortTitle}}'
           branch: NewPaperRequest${{fromJSON(github.event.issue.body).ShortTitle}}
-          labels: new-paper
+          labels: New Paper
           reviewers: dsaffo
           title: 'New Paper Request: ${{ fromJSON(github.event.issue.body).ShortTitle}}'
           body: |
