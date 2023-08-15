@@ -25,11 +25,11 @@ If you would like to add relevant papers to the survey website database, follow 
 
   ![image](https://github.com/VisDunneRight/IA-Survey/assets/7236305/fde1ab7b-1fd0-4cea-9029-272c1cc37238)
 
-6. From this repo, navigate to the actions tab -> Add New Paper -> Run workflow
+6. From this repo, navigate to the issues tab -> create new issue 
 
-7. Paste the copied JSON string into the form and click "Run workflow" This will trigger an action that will create a pull request
+7. Paste the copied JSON string into the issue body, use your paper title as the issue title, and add the "New Paper" tag. When you submit the issue, a pull request will be auto-generated.
 
-![image](https://github.com/VisDunneRight/IA-Survey/assets/13991410/4c998bab-fa62-4779-9a03-b1a0d351d344)
+![image](https://github.com/VisDunneRight/IADesign.Space/blob/main/public/images/issueguide.png)
 
 8. The repo maintainers will review the pull request and respond with any follow-up or discussion questions to ensure the new paper is relevant to the survey and the information is accurate and consistent. Pull requests will stay open for at least 7 days to give maintainers a chance to review. 
 
