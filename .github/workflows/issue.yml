@@ -50,10 +50,44 @@ jobs:
           reviewers: dsaffo
           title: 'New Paper Request: ${{ fromJSON(github.event.issue.body).ShortTitle}}'
           body: |
-            New Paper Request
+            # New Paper Request
+            
+            ### Meta Data
             - Short Title: ${{ fromJSON(github.event.issue.body).shortTitle }}
+            - Title: ${{ fromJSON(github.event.issue.body).title }}
+            - Authors: ${{ fromJSON(github.event.issue.body).authors }}
+            - Year: ${{ fromJSON(github.event.issue.body).year }}
+            - Bibtex: ${{ fromJSON(github.event.issue.body).bibtex }}
+
+            ### Codes
             - Opportunity: ${{ toJSON(fromJSON(github.event.issue.body).Opportunity) }}
-             ${{ toJSON(github.event.issue.body) }}
+            - Contribution: ${{ toJSON(fromJSON(github.event.issue.body)["Contribution Type"]) }}
+            - Data Domain: ${{ toJSON(fromJSON(github.event.issue.body)["Data Domain"]) }}
+            - Dataset Types: ${{ toJSON(fromJSON(github.event.issue.body)["Dataset Types"]) }}
+            - Dataset Generation: ${{ toJSON(fromJSON(github.event.issue.body)["Dataset Generation"]) }}
+            - Presentation: ${{ toJSON(fromJSON(github.event.issue.body).Presentation) }}
+            - Device: ${{ toJSON(fromJSON(github.event.issue.body).Device) }}
+            - Input: ${{ toJSON(fromJSON(github.event.issue.body).Input) }}
+            - Environment: ${{ toJSON(fromJSON(github.event.issue.body).Environment) }}
+            - Space: ${{ toJSON(fromJSON(github.event.issue.body).Space) }}
+            - Embodiment: ${{ toJSON(fromJSON(github.event.issue.body).Embodiment) }}
+            - Collaboration: ${{ toJSON(fromJSON(github.event.issue.body).Collaboration) }}
+            - Visualization Types: ${{ toJSON(fromJSON(github.event.issue.body).Visualization) }}
+            - Abstract or Natural: ${{ toJSON(fromJSON(github.event.issue.body)["Abstract/Natural"]) }}
+            - 2D or 3D: ${{ toJSON(fromJSON(github.event.issue.body)["2D or 3D"]) }}
+            - Position: ${{ toJSON(fromJSON(github.event.issue.body).Position) }}
+            - Scale: ${{ toJSON(fromJSON(github.event.issue.body).Scale) }}
+            - Manipulation: ${{ toJSON(fromJSON(github.event.issue.body).Manipulate) }}
+            - Interaction: ${{ toJSON(fromJSON(github.event.issue.body).Interaction) }}
+
+            ### Raw JSON
+            ${{ toJSON(github.event.issue.body) }}
+           
+          
+            
+            
+           
+            
             
 
             
