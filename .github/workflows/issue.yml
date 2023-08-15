@@ -51,6 +51,8 @@ jobs:
           title: 'New Paper Request: ${{ fromJSON(github.event.issue.body).ShortTitle}}'
           body: |
             New Paper Request
+            - Short Title: ${{ fromJSON(github.event.issue.body).shortTitle }}
+            - Opportunity: ${{ toJSON(fromJSON(github.event.issue.body).Opportunity) }}
              ${{ toJSON(github.event.issue.body) }}
             
 
