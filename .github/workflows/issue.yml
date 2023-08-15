@@ -61,8 +61,8 @@ jobs:
 
             ### Codes
             - Opportunity: ${{ toJSON(fromJSON(github.event.issue.body).Opportunity) }}
-            - Contribution: ${{ toJSON(fromJSON(github.event.issue.body)["Contribution Type"]) }}
-            - Data Domain: ${{ toJSON(fromJSON(github.event.issue.body)["Data Domain"]) }}
+            - Contribution: ${{ toJSON(fromJSON(github.event.issue.body)['Contribution Type']) }}
+            - Data Domain: ${{ toJSON(fromJSON(github.event.issue.body)['Data Domain']) }}
             - Dataset Types: ${{ toJSON(fromJSON(github.event.issue.body)["Dataset Types"]) }}
             - Dataset Generation: ${{ toJSON(fromJSON(github.event.issue.body)["Dataset Generation"]) }}
             - Presentation: ${{ toJSON(fromJSON(github.event.issue.body).Presentation) }}
