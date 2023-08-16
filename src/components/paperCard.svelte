@@ -87,11 +87,20 @@
 					<Tooltip  xPos="center" yPos="above">Digital Library Link</Tooltip>
 					</Wrapper>
 					<Wrapper>
+					{#if paper["Open Access"] == "na"}
 					<IconButton
+						disabled
 						class="material-icons"
 						on:click>
 						lock
 					</IconButton>
+					{:else}
+					<IconButton
+						class="material-icons"
+						on:click={() => window.open(paper['Open Access'])}>
+						lock_open
+					</IconButton>
+					{/if}
 					<Tooltip  xPos="center" yPos="above">Open Access Link</Tooltip>
 					</Wrapper>
 					<Wrapper>
