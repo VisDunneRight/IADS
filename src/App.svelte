@@ -306,7 +306,7 @@
 		flex-direction: row;
 		flex-wrap: wrap;
 		margin-left: 25vh;
-		justify-content: center;
+		justify-content: space-evenly;
 		overflow-x: hidden;
 	}
 	.vis-panel {
