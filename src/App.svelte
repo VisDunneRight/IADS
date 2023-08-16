@@ -122,7 +122,7 @@
 		}
 		if (filter.yearRange[0] > 0)
 			startingPoint = startingPoint.filter(
-				(paper) => filter.yearRange[0] < +paper.Year && +paper.Year < filter.yearRange[1]
+				(paper) => filter.yearRange[0] <= +paper.Year && +paper.Year <= filter.yearRange[1]
 			);
 
 			const re = new RegExp("([0-9]+)")
@@ -227,18 +227,20 @@
 
 <svelte:window bind:innerHeight bind:innerWidth />
 <Header detailView={structure.detailView.show} topView={structure.topView} {freq} />
-<body>
+<body class="container">
 	<div class="left-panel">
-		<div class="num-papers">
-			<div class="mdc-typography--headline6">Number of papers:</div>
-			<div class="mdc-typography--headline6">{filteredData.length}/{dataMeta.data.length}</div>
-		</div>
-		<SearchField on:message={updateSearchResults} />
-		<Timeline {filteredData} data={dataMeta.data} on:message={updateTimeRange} />
-		<FilterPanel {filterBy} {freq} {filteredFreq} {selectTopics} on:message={applyFilters} />
+	
+			<div class="num-papers">
+				<div class="mdc-typography--headline6">Number of papers:</div>
+				<div class="mdc-typography--headline6">{filteredData.length}/{dataMeta.data.length}</div>
+			</div>
+			<SearchField on:message={updateSearchResults} />
+			<Timeline {filteredData} data={dataMeta.data} on:message={updateTimeRange} />
+			<FilterPanel {filterBy} {freq} {filteredFreq} {selectTopics} on:message={applyFilters} />
+		
 	</div>
 	<div class="main-view">
-		<Splitpanes class="default-theme " style="height:{innerHeight - 80}">
+		<Splitpanes class="default-theme" style="height:{innerHeight - 80}">
 			<Pane>
 				<div class="card-container">
 					{#each filteredData as paper}
@@ -258,15 +260,16 @@
 						>
 					</div>
 				{/if}
-			</Pane>
+			</Pane >
 			{#if showVis}
-				<Pane>
+				<Pane size={30}>
+					
 					<div class="show-button">
 						<IconButton class="material-icons" on:click={setVis}>
 							keyboard_double_arrow_right
 						</IconButton>
 					</div>
-					<Vis data={dataMeta.data} filterBy={filterBy} on:message={applyFilters}/>
+						<Vis data={dataMeta.data} filterBy={filterBy} on:message={applyFilters}/>
 				</Pane>
 			{/if}
 		</Splitpanes>
@@ -277,26 +280,37 @@
 	body {
 		font-family: sans-serif;
 		margin-top: 80px;
+		height: 100%;
+		overflow-y: hidden;
 	}
 	.container {
 		display: flex; /* or inline-flex */
-		align-items: center;
 	}
 	.left-panel {
-		position: fixed;
-		width: 300px;
-		height: 100%;
+		order: -1;
+		max-height: 100%;
 		overflow-x: hidden;
-		padding-right:8px;
 		background-color: var(--mdc-theme-background, #fff);
+		width: 25vh;
+		position: fixed;
+		max-height:  100%;
+		overflow-y: scroll;
 	}
 	.main-view {
-		padding-left: 300px;
+		padding-left: 0px;
 	}
 	.card-container {
-		background-color: #f2f2f2;
-		/* display: grid;
-		column-gap: 10px; */
+		background-color: rgb(240, 240, 240);
+		padding-right: 0px;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		margin-left: 25vh;
+		justify-content: center;
+		overflow-x: hidden;
+	}
+	.vis-panel {
+
 	}
 	.show-button {
 		position: fixed;

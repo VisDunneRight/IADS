@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "@svelte-parts/zoom": "^0.0.23",
+    "bibtex": "^0.9.0",
     "d3": "^7.8.2",
     "shade-blend-color": "^1.0.0",
     "svelte-material-ui": "^7.0.0-beta.0",

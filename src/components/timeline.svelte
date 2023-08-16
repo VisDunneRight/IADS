@@ -16,6 +16,7 @@
 	const gap = 1;
 
 	function onRangeUpdate() {
+		console.log(valueStart, valueEnd)
 		dispatch('message', { start: valueStart, end: valueEnd });
 	}
 

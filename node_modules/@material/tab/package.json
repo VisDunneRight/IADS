@@ -1,0 +1,35 @@
+{
+  "name": "@material/tab",
+  "description": "The Material Components for the web tab component",
+  "version": "14.0.0",
+  "license": "MIT",
+  "keywords": [
+    "material components",
+    "material design",
+    "tab"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/material-components/material-components-web.git",
+    "directory": "packages/mdc-tab"
+  },
+  "main": "dist/mdc.tab.js",
+  "module": "index.js",
+  "sideEffects": false,
+  "dependencies": {
+    "@material/base": "^14.0.0",
+    "@material/elevation": "^14.0.0",
+    "@material/feature-targeting": "^14.0.0",
+    "@material/focus-ring": "^14.0.0",
+    "@material/ripple": "^14.0.0",
+    "@material/rtl": "^14.0.0",
+    "@material/tab-indicator": "^14.0.0",
+    "@material/theme": "^14.0.0",
+    "@material/typography": "^14.0.0",
+    "tslib": "^2.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "432c815e58d61a257742836f816cf95e271e6ea1"
+}

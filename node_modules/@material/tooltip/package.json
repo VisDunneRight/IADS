@@ -1,0 +1,35 @@
+{
+  "name": "@material/tooltip",
+  "description": "The Material Components Web tooltip component.",
+  "version": "14.0.0",
+  "license": "MIT",
+  "keywords": [
+    "material components",
+    "material design",
+    "tooltip"
+  ],
+  "main": "dist/mdc.tooltip.js",
+  "module": "index.js",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/material-components/material-components-web.git",
+    "directory": "packages/mdc-tooltip"
+  },
+  "dependencies": {
+    "@material/animation": "^14.0.0",
+    "@material/base": "^14.0.0",
+    "@material/dom": "^14.0.0",
+    "@material/elevation": "^14.0.0",
+    "@material/feature-targeting": "^14.0.0",
+    "@material/rtl": "^14.0.0",
+    "@material/shape": "^14.0.0",
+    "@material/theme": "^14.0.0",
+    "@material/typography": "^14.0.0",
+    "tslib": "^2.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "432c815e58d61a257742836f816cf95e271e6ea1"
+}

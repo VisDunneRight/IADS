@@ -95,7 +95,10 @@
     {
       "name": "Authors",
       "type": "MultiSelect"
-    }
+    },
+    {
+      "name": "Image",
+      "type": "String"    }
   ],
   "data": [
     {
@@ -171,8 +174,8 @@
       "DOI": "10.1109/TVCG.2020.3004137",
       "Authors": [
         "Y. Yang; T. Dwyer; K. Marriott; B. Jenny; S. Goodwin"
-      ]
-    },
+      ],
+      "img": "tiltmap.jpg"},
     {
       "Name": "\"Towards Sailing supported by Augmented Reality: Motivation, Methodology and Perspectives\"",
       "Opportunity": [
@@ -239,8 +242,8 @@
       "DOI": "10.1109/ISMAR-Adjunct51615.2020.00076",
       "Authors": [
         "F. Laera; M. M. Foglia; A. Evangelista; A. Boccaccio; M. Gattullo; V. M. Manghisi; J. L. Gabbard; A. E. Uva; M. Fiorentino"
-      ]
-    },
+      ],
+      "img": "sailing.gif"},
     {
       "Name": "[POSTER] HoloBee: Augmented Reality Based Bee Drift Analysis",
       "Opportunity": [
@@ -321,8 +324,7 @@
       "DOI": "10.1109/ISMAR-Adjunct.2017.38",
       "Authors": [
         "H. Nguyen; S. Ketchell; U. Engelke; B. Thomas; P. d. Souza"
-      ]
-    },
+      ],"img": "8088455-fig-1-source-large.gif"},
     {
       "Name": "[Poster] Visualization of solar radiation data in augmented reality",
       "Opportunity": [
@@ -392,8 +394,7 @@
       "DOI": "10.1109/ISMAR.2014.6948437",
       "Authors": [
         "M. Beatriz Carmo; A. P. Cláudio; A. Ferreira; A. P. Afonso; P. Redweik; C. Catita; M. C. Brito; J. N. Pedrosa"
-      ]
-    },
+      ],"img": "6948437-fig-1-source-large.gif"},
     {
       "Name": "3D Volume Visualization and Screen-based Interaction with Dynamic Ray Casting on Autostereoscopic Display",
       "Opportunity": [
@@ -465,8 +466,8 @@
       "DOI": "10.1109/ISMAR-Adjunct54149.2021.00056",
       "Authors": [
         "R. Li; T. Huang; H. Liang; B. Han; X. Zhang; H. Liao"
-      ]
-    },
+      ],
+      "img": "DRC.gif"},
     {
       "Name": "A Lightweight Tangible 3D Interface for Interactive Visualization of Thin Fiber Structures",
       "Opportunity": [
@@ -541,8 +542,8 @@
       "DOI": "10.1109/TVCG.2013.121",
       "Authors": [
         "B. Jackson; T. Y. Lau; D. Schroeder; K. C. Toussaint; D. F. Keefe"
-      ]
-    },
+      ],
+      "img": "6651934-fig-3-source-large.gif"},
     {
       "Name": "Affinity Lens: Data-Assisted Affinity Diagramming with Augmented Reality",
       "Opportunity": [
@@ -621,8 +622,8 @@
         "Hariharan and Drucker",
         "Steven M. and Adar",
         "Eytan"
-      ]
-    },
+      ],
+      "img": "chi2019-398-fig2.jpg"},
     {
       "Name": "Augmented Chironomia for Presenting Data to Remote Audiences",
       "Opportunity": [
@@ -699,8 +700,8 @@
         "Brian D. and Bartram",
         "Lyn and Brehmer",
         "Matthew"
-      ]
-    },
+      ],
+     "img": "uist22-3-fig1.jpg"},
     {
       "Name": "Augmented Scale Models: Presenting Multivariate Data Around Physical Scale Models in Augmented Reality",
       "Opportunity": [
@@ -781,8 +782,8 @@
         "Niki and Aston",
         "Cathlyn and Smith",
         "Ross T."
-      ]
-    },
+      ],
+      "img": "satri1-532500a054-large.gif"},
     {
       "Name": "Augmenting Static Visualizations with PapARVis Designer",
       "Opportunity": [
@@ -865,8 +866,8 @@
         "Qianwen and Bach",
         "Benjamin and Qu",
         "Huamin"
-      ]
-    },
+      ],
+      "img": "satri1-532500a054-large.gif"},
     {
       "Name": "Data Abstraction for Visual and Haptic Representations in Flow Visualization",
       "Opportunity": [
@@ -943,8 +944,7 @@
         "Ayush and Kang",
         "Sungjoo and Kim",
         "Jin Ryong"
-      ]
-    },
+      ],"img": "vrst22-45-fig2.jpg"},
     {
       "Name": "Data Visceralization: Enabling Deeper Understanding of Data Using Virtual Reality",
       "Opportunity": [
@@ -1013,8 +1013,7 @@
       "DOI": "10.1109/TVCG.2020.3030435",
       "Authors": [
         "B. Lee; D. Brown; B. Lee; C. Hurter; S. Drucker; T. Dwyer"
-      ]
-    },
+      ],"img": "27tvcg02-lee-3030435-x-fig-1-source-small.gif"},
     {
       "Name": "DataHop: Spatial Data Exploration in Virtual Reality",
       "Opportunity": [
@@ -1099,8 +1098,7 @@
         "Devamardeep and Xia",
         "Haijun and Wigdor",
         "Daniel"
-      ]
-    },
+      ],"img": "datahop.PNG"},
     {
       "Name": "Dataspace: A Reconfigurable Hybrid Reality Environment for Collaborative Information Analysis",
       "Opportunity": [
@@ -1202,8 +1200,7 @@
       "DOI": "10.1109/VR.2019.8797733",
       "Authors": [
         "M. Cavallo; M. Dholakia; M. Havlena; K. Ocheltree; M. Podlaseck"
-      ]
-    },
+      ],"img": "145_154_cavallo-fig-1-source-large.gif"},
     {
       "Name": "Dear Pictograph: Investigating the Role of Personalization and Immersion for Consuming and Enjoying Visualizations",
       "Opportunity": [
@@ -1279,8 +1276,7 @@
         "Steven and Amini",
         "Fereshteh and Hinckley",
         "Ken"
-      ]
-    },
+      ],"img": "chi20-221-fig8.jpg"},
     {
       "Name": "Developing Virtual Reality Visualizations for Unsteady Flow Analysis of Dinosaur Track Formation using Scientific Sketching",
       "Opportunity": [
@@ -1354,8 +1350,7 @@
       "DOI": "10.1109/TVCG.2019.2898796",
       "Authors": [
         "J. Novotny; J. Tveite; M. L. Turner; S. Gatesy; F. Drury; P. Falkingham; D. H. Laidlaw"
-      ]
-    },
+      ],"img": "25tvcg05-novotny-2898796-fig-2-source-large.gif"},
     {
       "Name": "Embodied Axes: Tangible, Actuated Interaction for 3D Augmented Reality Data Spaces",
       "Opportunity": [
@@ -1443,8 +1438,7 @@
         "Ross T. and Thomas",
         "Bruce H. and Dwyer",
         "Tim"
-      ]
-    },
+      ],"img": "chi20-486-fig1.jpg"},
     {
       "Name": "Evaluating an Immersive Space-Time Cube Geovisualization for Intuitive Trajectory Data Exploration",
       "Opportunity": [
@@ -1521,8 +1515,7 @@
       "DOI": "10.1109/TVCG.2019.2934415",
       "Authors": [
         "J. A. W. Filho; W. Stuerzlinger; L. Nedel"
-      ]
-    },
+      ],"img": "26tvcg01-filho-2934415-fig-1-source-large.gif"},
     {
       "Name": "Exploration &amp; Anthropomorphism in Immersive Unit Visualizations",
       "Opportunity": [
@@ -1594,8 +1587,7 @@
         "Alexander and Danyluk",
         "Kurtis Thorvald and Willett",
         "Wesley"
-      ]
-    },
+      ],"img": "anthro.PNG"},
     {
       "Name": "Exploring Data in Virtual Reality: Comparisons with 2D Data Visualizations",
       "Opportunity": [
@@ -1667,8 +1659,7 @@
         "Patrick and Jones",
         "Simon L. and Kelly",
         "Ryan"
-      ]
-    },
+      ],"img": "large.PNG"},
     {
       "Name": "Exploring Parallel Coordinates Plots in Virtual Reality",
       "Opportunity": [
@@ -1744,8 +1735,7 @@
         "Slawomir Konrad and Kipouros",
         "Timoleon and Kristensson",
         "Per Ola"
-      ]
-    },
+      ],"img": "chi19extendedabstracts-520-fig2.jpg"},
     {
       "Name": "Exploring the Effects of Scale in Augmented Reality-Empowered Visual Analytics",
       "Opportunity": [
@@ -1824,8 +1814,7 @@
         "Zhida and Han",
         "Feng and Ma",
         "Xiaojuan"
-      ]
-    },
+      ],"img": "effects.PNG"},
     {
       "Name": "FlyAR: Augmented Reality Supported Micro Aerial Vehicle Navigation",
       "Opportunity": [
@@ -1897,8 +1886,7 @@
       "DOI": "10.1109/TVCG.2014.24",
       "Authors": [
         "S. Zollmann; C. Hoppe; T. Langlotz; G. Reitmayr"
-      ]
-    },
+      ],"img": "6777462-fig-5-source-large.gif"},
     {
       "Name": "GeoGate: Correlating Geo-Temporal Datasets Using an Augmented Reality Space-Time Cube and Tangible Interactions",
       "Opportunity": [
@@ -1977,8 +1965,7 @@
       "DOI": "10.1109/VR.2019.8797812",
       "Authors": [
         "S. Y. Ssin; J. A. Walsh; R. T. Smith; A. Cunningham; B. H. Thomas"
-      ]
-    },
+      ],"img": "210_219_ssin-fig-4-source-large.gif"},
     {
       "Name": "HybridAxes: An Immersive Analytics Tool With Interoperability Between 2D and Immersive Reality Modes",
       "Opportunity": [
@@ -2055,8 +2042,7 @@
         "Seraji",
         "Mohammad Rajabi and Stuerzlinger",
         "Wolfgang"
-      ]
-    },
+      ],"img": "9974239-fig-1-source-large.gif"},
     {
       "Name": "ImAxes: Immersive Axes as Embodied Affordances for Interactive Multivariate Data Visualisation",
       "Opportunity": [
@@ -2140,8 +2126,7 @@
         "Tim and Thomas",
         "Bruce H. and Marriott",
         "Kim"
-      ]
-    },
+      ],"img": "imaxes.png"},
     {
       "Name": "Immersive Collaborative Analysis of Network Connectivity: CAVE-style or Head-Mounted Display?",
       "Opportunity": [
@@ -2216,8 +2201,7 @@
       "DOI": "10.1109/TVCG.2016.2599107",
       "Authors": [
         "M. Cordeil; T. Dwyer; K. Klein; B. Laha; K. Marriott; B. H. Thomas"
-      ]
-    },
+      ],"img": "23tvcg01-cordeil-2599107-fig-1-source-large.gif"},
     {
       "Name": "Immersive ParaView: An Immersive Scientific Workflow for the Advancement of Measurement Science",
       "Opportunity": [
@@ -2294,8 +2278,7 @@
         "William R. and Sayrafian",
         "Kamran and Terrill",
         "Judith"
-      ]
-    },
+      ],"img": "9974489-fig-1-source-large.gif"},
     {
       "Name": "Immersive WYSIWYG virtual meteorological sandbox",
       "Opportunity": [
@@ -2376,8 +2359,7 @@
       "DOI": "10.1109/ISMAR-Adjunct57072.2022.00033",
       "Authors": [
         "Hao Hu; Song Wang; Yonghui Chen"
-      ]
-    },
+      ],"img": "9974250-fig-1-source-large.gif"},
     {
       "Name": "ImNDT: Immersive Workspace for the Analysis of Multidimensional Material Data From Non-Destructive Testing",
       "Opportunity": [
@@ -2459,8 +2441,7 @@
         "Alexander and Gr\\\"{o}ller",
         "Eduard and Heinzl",
         "Christoph"
-      ]
-    },
+      ],"img": "vrst21-2-fig1.jpg"},
     {
       "Name": "Improving Information Sharing and Collaborative Analysis for Remote GeoSpatial Visualization Using Mixed Reality",
       "Opportunity": [
@@ -2539,8 +2520,7 @@
       "DOI": "10.1109/ISMAR.2019.00021",
       "Authors": [
         "T. Mahmood; W. Fulmer; N. Mungoli; J. Huang; A. Lu"
-      ]
-    },
+      ],"img": "mahmo1-p12-mahmo-large.gif"},
     {
       "Name": "Infocarve: A Framework for Volume Visualization on Commodity Augmented Reality Displays",
       "Opportunity": [
@@ -2613,8 +2593,7 @@
       "DOI": "10.1109/ICVRV.2016.86",
       "Authors": [
         "L. Ran; J. Dingliana"
-      ]
-    },
+      ],"img": "7938241-fig-1-source-large.gif"},
     {
       "Name": "Information Olfactation: Harnessing Scent to Convey Data",
       "Opportunity": [
@@ -2688,8 +2667,7 @@
       "DOI": "10.1109/TVCG.2018.2865237",
       "Authors": [
         "B. Patnaik; A. Batch; N. Elmqvist"
-      ]
-    },
+      ],"img": "25tvcg01-patnaik-2865237-fig-3-source-large.gif"},
     {
       "Name": "Interactive Visualization of Deep Learning Models in an Immersive Environment",
       "Opportunity": [
@@ -2764,8 +2742,7 @@
         "Nagasaka",
         "Hikaru and Izuhara",
         "Motoya"
-      ]
-    },
+      ],"img": "vrst21-107-fig2.jpg"},
     {
       "Name": "Investigating the Impact of Real-World Environments on the Perception of 2D Visualizations in Augmented Reality",
       "Opportunity": [
@@ -2838,8 +2815,7 @@
         "Satkowski",
         "Marc and Dachselt",
         "Raimund"
-      ]
-    },
+      ],"img": "chi21-290-fig1.jpg"},
     {
       "Name": "Location-Based Augmented Reality In-situ Visualization Applied for Agricultural Fieldwork Navigation",
       "Opportunity": [
@@ -2917,8 +2893,7 @@
       "DOI": "10.1109/ISMAR-Adjunct.2019.00039",
       "Authors": [
         "M. Zheng; A. G. Campbell"
-      ]
-    },
+      ],"img": "476500a093-fig-1-source-small.gif"},
     {
       "Name": "Look Inside: Understanding Thermal Flux Through Augmented Reality",
       "Opportunity": [
@@ -2988,8 +2963,7 @@
       "DOI": "10.1109/ISMAR-Adjunct.2018.00059",
       "Authors": [
         "P. Knierim; F. Kiss; A. Schmidt"
-      ]
-    },
+      ],"img": "759200a170-fig-2-source-large.gif"},
     {
       "Name": "MARVIS: Combining Mobile Devices and Augmented Reality for Visual Data Analysis",
       "Opportunity": [
@@ -3081,8 +3055,7 @@
         "Marc and B\\\"{u}schel",
         "Wolfgang and Dachselt",
         "Raimund"
-      ]
-    },
+      ],"img": "chi21-550-fig1.jpg"},
     {
       "Name": "MARVisT: Authoring Glyph-Based Visualization in Mobile Augmented Reality",
       "Opportunity": [
@@ -3159,8 +3132,7 @@
       "DOI": "10.1109/TVCG.2019.2892415",
       "Authors": [
         "Z. Chen; Y. Su; Y. Wang; Q. Wang; H. Qu; Y. Wu"
-      ]
-    },
+      ],"img": "chen5-2892415-large.gif"},
     {
       "Name": "Mixed-Reality Guidance for Brain Stimulation Treatment of Depression",
       "Opportunity": [
@@ -3230,8 +3202,7 @@
       "DOI": "10.1109/ISMAR-Adjunct.2018.00109",
       "Authors": [
         "C. Leuze; G. Yang; B. Hargreaves; B. Daniel; J. A. McNab"
-      ]
-    },
+      ],"img": "759200a377-fig-5-source-large.gif"},
     {
       "Name": "NIVR: Neuro imaging in virtual reality",
       "Opportunity": [
@@ -3306,8 +3277,7 @@
       "DOI": "10.1109/VR.2017.7892381",
       "Authors": [
         "T. Ard; D. M. Krum; T. Phan; D. Duncan; R. Essex; M. Bolas; A. Toga"
-      ]
-    },
+      ],"img": "7892381-fig-3-source-large.gif"},
     {
       "Name": "OpticARe - Augmented Reality Mobile Patient Monitoring in Intensive Care Units",
       "Opportunity": [
@@ -3379,8 +3349,7 @@
         "Simon and Cobus",
         "Vanessa and Heuten",
         "Wilko"
-      ]
-    },
+      ],"img": "vrst21-3-fig1.jpg"},
     {
       "Name": "Origin-Destination Flow Maps in Immersive Environments",
       "Opportunity": [
@@ -3450,8 +3419,7 @@
       "DOI": "10.1109/TVCG.2018.2865192",
       "Authors": [
         "Y. Yang; T. Dwyer; B. Jenny; K. Marriott; M. Cordeil; H. Chen"
-      ]
-    },
+      ],"img": "25tvcg01-yang-2865192-fig-1-source-large.gif"},
     {
       "Name": "Personal Augmented Reality for Information Visualization on Large Interactive Displays",
       "Opportunity": [
@@ -3530,8 +3498,7 @@
       "DOI": "10.1109/TVCG.2020.3030460",
       "Authors": [
         "P. Reipschlager; T. Flemisch; R. Dachselt"
-      ]
-    },
+      ],"img": "27tvcg02-reipschlager-3030460-fig-14-source-large.gif"},
     {
       "Name": "Pre-attentive Features in Natural Augmented Reality Visualizations",
       "Opportunity": [
@@ -3600,8 +3567,7 @@
       "DOI": "10.1109/ISMAR-Adjunct.2016.0043",
       "Authors": [
         "C. Barreiros; E. Veas; V. Pammer-Schindler"
-      ]
-    },
+      ],"img": "7836464-fig-1-source-large.gif"},
     {
       "Name": "Quantitative Data Visualisation on Virtual Globes",
       "Opportunity": [
@@ -3679,8 +3645,7 @@
         "Tobias and Cordeil",
         "Maxime and Jenny",
         "Bernhard"
-      ]
-    },
+      ],"img": "chi21-113-fig2.jpg"},
     {
       "Name": "RealitySketch: Embedding Responsive Graphics and Visualizations in AR through Dynamic Sketching",
       "Opportunity": [
@@ -3766,8 +3731,7 @@
         "Stephen and Li",
         "Wilmot and Leithinger",
         "Daniel"
-      ]
-    },
+      ],"img": "figure-17-2.jpg"},
     {
       "Name": "ReLive: Bridging In-Situ and Ex-Situ Visual Analytics for Analyzing Mixed Reality User Studies",
       "Opportunity": [
@@ -3856,8 +3820,7 @@
         "Johannes and Elmqvist",
         "Niklas and Reiterer",
         "Harald"
-      ]
-    },
+      ],"img": "chi22-445-fig2.jpg"},
     {
       "Name": "Remote and Collaborative Virtual Reality Experiments via Social VR Platforms",
       "Opportunity": [
@@ -3932,8 +3895,7 @@
         "Sara and Yildirim",
         "Caglar and Dunne",
         "Cody"
-      ]
-    },
+      ],"img": "chi21-385-fig6.jpg"},
     {
       "Name": "Scaptics and Highlight-Planes: Immersive Interaction Techniques for Finding Occluded Features in 3D Scatterplots",
       "Opportunity": [
@@ -4007,8 +3969,7 @@
         "Barrett and Thomas",
         "Bruce H. and Dwyer",
         "Tim"
-      ]
-    },
+      ],"img": "chi2019-325-fig2.jpg"},
     {
       "Name": "SecondSight: A Framework for Cross-Device Augmented Reality Interfaces",
       "Opportunity": [
@@ -4087,8 +4048,7 @@
         "Jack and Rompapas",
         "Damien Constantine and Billinghurst",
         "Mark"
-      ]
-    },
+      ],"img": "chi21extendedabstracts-478-fig4.jpg"},
     {
       "Name": "Shared Surfaces and Spaces: Collaborative Data Visualisation in a Co-located Immersive Environment",
       "Opportunity": [
@@ -4167,8 +4127,7 @@
       "DOI": "10.1109/TVCG.2020.3030450",
       "Authors": [
         "B. Lee; X. Hu; M. Cordeil; A. Prouzeau; B. Jenny; T. Dwyer"
-      ]
-    },
+      ],"img": "27tvcg02-lee-3030450-x-fig-1-source-small.gif"},
     {
       "Name": "Shvil: Collaborative Augmented Reality Land Navigation",
       "Opportunity": [
@@ -4251,8 +4210,7 @@
         "Aditya Shekhar and Sharlin",
         "Ehud and Costa Sousa",
         "Mario"
-      ]
-    },
+      ],"img": "svhil.png"},
     {
       "Name": "SPARVIS: Combining Smartphone and Augmented Reality for Visual Data Analytics",
       "Opportunity": [
@@ -4337,8 +4295,7 @@
         "Chao and Xu",
         "Yi and Bryan",
         "Chris"
-      ]
-    },
+      ],"img": "9974220-fig-1-source-small.gif"},
     {
       "Name": "STREAM: Exploring the Combination of Spatially-Aware Tablets with Augmented Reality Head-Mounted Displays for Immersive Analytics",
       "Opportunity": [
@@ -4420,8 +4377,7 @@
         "Johannes and Butscher",
         "Simon and Reiterer",
         "Harald"
-      ]
-    },
+      ],"img": "chi21-258-fig1.jpg"},
     {
       "Name": "Tangible Globes for Data Visualisation in Augmented Reality",
       "Opportunity": [
@@ -4517,8 +4473,7 @@
         "Ying and Dwyer",
         "Tim and Jenny",
         "Bernhard"
-      ]
-    },
+      ],"img": "chi22-607-fig10.jpg"},
     {
       "Name": "TangibleData: Interactive Data Visualization with Mid-Air Haptics",
       "Opportunity": [
@@ -4601,8 +4556,7 @@
         "Junghoon and Noeske",
         "Richard Huynh and Kim",
         "Jin Ryong"
-      ]
-    },
+      ],"img": "vrst21-41-fig2.jpg"},
     {
       "Name": "The Hologram in My Hand: How Effective is Interactive Exploration of 3D Visualizations in Immersive Tangible Augmented Reality?",
       "Opportunity": [
@@ -4678,8 +4632,7 @@
       "DOI": "10.1109/TVCG.2017.2745941",
       "Authors": [
         "B. Bach; R. Sicat; J. Beyer; M. Cordeil; H. Pfister"
-      ]
-    },
+      ],"img": "24tvcg01-bach-2745941-fig-3-source-large.gif"},
     {
       "Name": "The Impact of Immersion on Cluster Identification Tasks",
       "Opportunity": [
@@ -4756,8 +4709,7 @@
       "DOI": "10.1109/TVCG.2019.2934395",
       "Authors": [
         "M. Kraus; N. Weiler; D. Oelke; J. Kehrer; D. A. Keim; J. Fuchs"
-      ]
-    },
+      ],"img": "26tvcg01-kraus-2934395-fig-2-source-large.gif"},
     {
       "Name": "Touch and Beyond: Comparing Physical and Virtual Reality Visualizations",
       "Opportunity": [
@@ -4836,8 +4788,7 @@
       "DOI": "10.1109/TVCG.2020.3023336",
       "Authors": [
         "Kurtis Danyluk; Teoman Ulusoy; Wei Wei; Wesley Willett"
-      ]
-    },
+      ],"img": "danyl5-3023336-large.gif"},
     {
       "Name": "Toward Agile Situated Visualization: An Exploratory User Study",
       "Opportunity": [
@@ -4918,8 +4869,7 @@
         "Alexandre and Sedlmair",
         "Michael and Weiskopf",
         "Daniel"
-      ]
-    },
+      ],"img": "chi20extendedabstracts-423-fig6.jpg"},
     {
       "Name": "Towards an Understanding of Augmented Reality Extensions for Existing 3D Data Analysis Tools",
       "Opportunity": [
@@ -5006,8 +4956,7 @@
         "Mickael and Ammi",
         "Mehdi and Isenberg",
         "Tobias"
-      ]
-    },
+      ],"img": "chi20-528-fig8.jpg"},
     {
       "Name": "Towards an Understanding of Situated AR Visualization for Basketball Free-Throw Training",
       "Opportunity": [
@@ -5086,8 +5035,7 @@
         "Johanna and Smith",
         "Maurice A. and Pfister",
         "Hanspeter"
-      ]
-    },
+      ],"img": "chi21-605-fig1.jpg"},
     {
       "Name": "Virtual Reality Sonification Training System Can Improve a Novice's Forehand Return of Serve in Tennis",
       "Opportunity": [
@@ -5162,8 +5110,7 @@
         "Tadashi and Sugimoto",
         "Maki and Kimura",
         "Toshitaka"
-      ]
-    },
+      ],"img": "9974234-fig-2-source-large.gif"},
     {
       "Name": "Visual Comparison of Networks in VR",
       "Opportunity": [
@@ -5240,8 +5187,7 @@
         "Falk and Keim",
         "Daniel A. and Klein",
         "Karsten"
-      ]
-    },
+      ],"img": "tvcg-joos-3203001-fig-1-source-small.gif"},
     {
       "Name": "Visualizing Natural Environments from Data in Virtual Reality: Combining Realism and Uncertainty",
       "Opportunity": [
@@ -5311,8 +5257,7 @@
       "DOI": "10.1109/VR.2019.8797996",
       "Authors": [
         "J. Huang; M. S. Lucash; M. B. Simpson; C. Helgeson; A. Klippel"
-      ]
-    },
+      ],"img": "1485_1488_huang-fig-3-source-small.gif"},
     {
       "Name": "Visualizing Planetary Spectroscopy through Immersive On-site Rendering",
       "Opportunity": [
@@ -5390,8 +5335,7 @@
       "DOI": "10.1109/VR50410.2021.00066",
       "Authors": [
         "L. Gold; A. Bahremand; C. Richards; J. Hertzberg; K. Sese; A. Gonzalez; Z. Purcell; K. Powell; R. LiKamWa"
-      ]
-    },
+      ],"img": "9417645-fig-5-source-large.gif"},
     {
       "Name": "Vivern–A Virtual Environment for Multiscale Visualization and Modeling of DNA Nanostructures",
       "Opportunity": [
@@ -5475,8 +5419,7 @@
         "Ivan and Kozlíková",
         "Barbora and Miao",
         "Haichao"
-      ]
-    },
+      ],"img": "kutak4-3106328-large.gif"},
     {
       "Name": "VRGaitAnalytics: Visualizing Dual Task Cost for VR Gait Assessment",
       "Opportunity": [
@@ -5552,8 +5495,7 @@
         "Liraz and Lubetzky",
         "Anat V. and Perlin",
         "Ken"
-      ]
-    },
+      ],"img": "vrst21-25-fig1.jpg"},
     {
       "Name": "WA VIS: A Web-Based Augmented Reality Text Data Visual Analysis Tool",
       "Opportunity": [
@@ -5631,8 +5573,7 @@
       "DOI": "10.1109/ICVRV47840.2019.00011",
       "Authors": [
         "Y. Pei; Y. Wu; S. Wang; F. Wang; H. Jiang; S. Xu; J. Zhou"
-      ]
-    },
+      ],"img": "pei5-475200a011-large.gif"},
     {
       "Name": "Worlds-in-Wedges: Combining Worlds-in-Miniature and Portals to Support Comparative Immersive Visualization of Forestry Data",
       "Opportunity": [
@@ -5710,8 +5651,7 @@
       "DOI": "10.1109/VR.2019.8797871",
       "Authors": [
         "J. W. Nam; K. McCullough; J. Tveite; M. M. Espinosa; C. H. Perry; B. T. Wilson; D. F. Keefe"
-      ]
-    },
+      ],"img": "747_755_nam-fig-1-source-large.gif"},
     {
       "Name": "X-Space: A Tool for Extending Mixed Reality Space from Web2D Visualization Anywhere",
       "Opportunity": [
@@ -5793,8 +5733,7 @@
       "DOI": "10.1109/ISMAR-Adjunct57072.2022.00032",
       "Authors": [
         "Tiemeng Li; Songqian Wu; Yanning Jin; Haopai Shi; Shiran Liu"
-      ]
-    },
+      ],"img": "9974439-fig-2-source-large.gif"},
     {
       "Name": "XVCollab: An Immersive Analytics Tool for Asymmetric Collaboration across the Virtuality Spectrum",
       "Opportunity": [
@@ -5882,7 +5821,6 @@
         "Seraji",
         "Mohammad Rajabi and Stuerzlinger",
         "Wolfgang"
-      ]
-    }
+      ],"img": "9974396-fig-3-source-large.gif"}
   ]
 }
