@@ -20,6 +20,7 @@
 	import {parseBibFile, normalizeFieldValue} from "bibtex";
     import Tooltip, { Wrapper } from '@smui/tooltip';
     import Chip, { Set} from '@smui/chips';
+    import { urlParams } from '../urlParamStore';
 	
 
 	export let paper;
@@ -27,10 +28,14 @@
 	export let detailView;
 	export let meta;
 	let menu;
-	let open = false;
 	let snackbarWithClose;
 
-	console.log(paper)
+	// let urlParams = new URLSearchParams(window.location.search); 
+	let params;
+	urlParams.subscribe((value) => {
+		params = value;
+	});
+    $: open = params.get('paper') == paper.DOI;
 
 </script>
 
@@ -41,17 +46,18 @@
 			<IconButton class="material-icons" title="Dismiss">close</IconButton>
 		</Actions>
 	</Snackbar>
-	<Dialog bind:open fullscreen aria-describedby="sheet-content" style="z-index:5">
+
+	<Dialog bind:open fullscreen aria-describedby="sheet-content" style="z-index:5"  on:SMUIDialog:closed={() => { window.history.replaceState(null, null, '/')}}>
 		<Content id="sheet-content">
 			<PaperDetail {paper} {detailView} {meta} />
 			<div class="close-button">
-				<IconButton on:click={() => (open = false)} class="material-icons">close</IconButton>
+				<IconButton on:click={() => {window.history.replaceState(null, null, '/');} } class="material-icons">close</IconButton>
 			</div>
 		</Content>
 	</Dialog>
 
 	<Card class={summaryView.view === "image" ? 'card-image' : 'card-text'} style="width: 500px; height: 400px; margin: 10px">
-		<PrimaryAction on:click={() => (open = true)}>
+		<PrimaryAction on:click={() => {window.history.replaceState(null, null, '?paper=' + paper.DOI);}}>
 		  	<Media class="card-media-16x9" aspectRatio="16x9" style="background-image: url(/images/{paper.img}); height: 200px" />
 			<Content class="mdc-typography--body2">
 			<h2 class="mdc-typography--headline6" style="margin: 0; font-size: 15px; line-height: 18px; ">

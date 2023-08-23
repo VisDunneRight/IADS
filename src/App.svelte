@@ -10,7 +10,8 @@
 	import structure from './data/survey-config.json';
 	import dataMeta from './data/survey-data.json';
 
-	import { onMount } from 'svelte';
+	import { beforeUpdate, onMount } from 'svelte';
+    import { urlParams } from './urlParamStore';
 
 	let innerHeight = 0;
 	let innerWidth = 0;
@@ -306,7 +307,7 @@
 		flex-direction: row;
 		flex-wrap: wrap;
 		margin-left: 25vh;
-		justify-content: space-evenly;
+		justify-content: center;
 		overflow-x: hidden;
 	}
 	.vis-panel {

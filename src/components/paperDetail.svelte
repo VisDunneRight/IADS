@@ -10,6 +10,7 @@
 	export let meta;
 
 	let snackbarWithClose;
+
 </script>
 
 <Snackbar bind:this={snackbarWithClose}>
