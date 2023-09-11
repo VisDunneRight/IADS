@@ -47,7 +47,7 @@
 		</Actions>
 	</Snackbar>
 
-	<Dialog bind:open fullscreen aria-describedby="sheet-content" style="z-index:5"  on:SMUIDialog:closed={() => { window.history.replaceState(null, null, '/')}}>
+	<Dialog bind:open  aria-describedby="sheet-content" style="z-index:20"  on:SMUIDialog:closed={() => { window.history.replaceState(null, null, '/')}}>
 		<Content id="sheet-content">
 			<PaperDetail {paper} {detailView} {meta} />
 			<div class="close-button">

@@ -233,11 +233,11 @@
 	}
 
 
-//   let transitionParams = {
-//     x: 320,
-//     duration: 2000,
-//     easing: sineIn
-//   };
+  let transitionParams = {
+    x: -320,
+    duration: 10,
+    easing: sineIn
+  };
 
   $: condition = innerWidth < 800;
 
@@ -257,7 +257,7 @@
 	}
 
 	$: drawer = open && condition
-	$: console.log(open, drawer);
+	
 	let scrollingModal = false;
 
   let detailView = structure.detailView.show;
@@ -284,7 +284,7 @@
 
 
 
-	<Drawer leftOffset='top-[{navHeight}px]' width='[{sidebarWidth}px]' activateClickOutside={condition} backdrop={false}  divClass='z-20 overflow-y-auto bg-white dark:bg-gray-800' bind:hidden={drawer} id="sidebar2">
+	<Drawer transitionType="fly" transitionParams={transitionParams} leftOffset='top-[{navHeight}px]' width='[{sidebarWidth}px]' activateClickOutside={true} backdrop={false}  divClass='z-20 overflow-y-auto bg-white dark:bg-gray-800' bind:hidden={drawer} id="sidebar2">
 	<Sidebar asideClass="fixed w-80 overflow-x-scroll h-screen">
 		<SidebarWrapper divCass="max-h-10 w-full">
 		  <SidebarGroup>
