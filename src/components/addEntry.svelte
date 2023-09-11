@@ -3,6 +3,7 @@
 	import Button, { Label } from '@smui/button';
 	import MultiCombo from './multiCombo.svelte';
 	import Clipboard from 'svelte-clipboard';
+  import { Modal } from 'flowbite-svelte';
 
 	let stitle = '';
 	let title = '';
@@ -14,6 +15,7 @@
 	export let detailView = [];
 	export let freq = {};
 	export let addEntryInfo;
+	export let scrollingModal;
 	let categories = [];
 
 	detailView.forEach((cate) => {
@@ -79,8 +81,9 @@
 	};
 </script>
 
+
+<Modal size="xl" title="Contribute a New Paper" bind:open={scrollingModal} outsideclose>
 <div>
-	<div class="mdc-typography--headline3">Add Entry</div>
 	{#each addEntryInfo.description as para}
 		<p class="mdc-typography--body1">
 			{para}
@@ -209,9 +212,12 @@
 			</div>
 		</div>
 	</div>
-	<div style="display:flex; justify-content:space-between; ">
+	
+</div>
+<svelte:fragment slot="footer">
+	<div style="width: 100%; display:flex; justify-content:space-between; ">
 		<div>
-			<Button on:click={reset}>
+			<Button on:click={() => reset}>
 				<Label>Reset</Label>
 			</Button>
 		</div>
@@ -236,23 +242,19 @@
 					<Label>Open email</Label>
 				</Button>
 			{/if}
-			
 		</div>
 	</div>
-</div>
+  </svelte:fragment>
+</Modal>
 
 <style>
-	.entry-content {
-	}
 	.title-cate {
 		padding: 5px 10px;
 	}
 	.catagory-field {
-		height: 300px;
 		width: 100%;
 		border: lightgray solid 1px;
 		border-radius: 5px;
-		overflow-y: scroll;
 	}
 	.title-text {
 		width: 100px;

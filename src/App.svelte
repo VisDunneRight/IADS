@@ -9,9 +9,18 @@
   import Vis from "./vis.svelte";
 	import structure from './data/survey-config.json';
 	import dataMeta from './data/survey-data.json';
+	import AddEntry from './components/addEntry.svelte';
 
 	import { beforeUpdate, onMount } from 'svelte';
     import { urlParams } from './urlParamStore';
+
+	
+	import { Alert } from 'flowbite-svelte';
+	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, ImagePlaceholder, Skeleton, TextPlaceholder } from 'flowbite-svelte';
+	import { Modal, Drawer, Button, CloseButton, Sidebar, SidebarBrand, SidebarCta, SidebarDropdownItem, SidebarDropdownWrapper, SidebarGroup, SidebarItem, SidebarWrapper } from 'flowbite-svelte';
+  import { sineIn } from 'svelte/easing';
+  import { FilterSolid } from 'flowbite-svelte-icons';
+
 
 	let innerHeight = 0;
 	let innerWidth = 0;
@@ -106,7 +115,6 @@
 	}
 
 	onMount(async () => {
-		
 		applyFilters();
 	});
 
@@ -224,95 +232,126 @@
 		applyFilters();
 	}
 
+
+//   let transitionParams = {
+//     x: 320,
+//     duration: 2000,
+//     easing: sineIn
+//   };
+
+  $: condition = innerWidth < 800;
+
+  let navHeight;
+  let sidebarWidth;
+  let open = true;
+
+
+
+  $: {
+	if (condition === true){
+		sidebarWidth = 0;
+	} else {
+		sidebarWidth = 320
+	} 
+
+	}
+
+	$: drawer = open && condition
+	$: console.log(open, drawer);
+	let scrollingModal = false;
+
+  let detailView = structure.detailView.show;
+
 </script>
 
 <svelte:window bind:innerHeight bind:innerWidth />
-<Header detailView={structure.detailView.show} topView={structure.topView} {freq} />
-<body class="container">
-	<div class="left-panel">
-	
-			<div class="num-papers">
-				<div class="mdc-typography--headline6">Number of papers:</div>
-				<div class="mdc-typography--headline6">{filteredData.length}/{dataMeta.data.length}</div>
-			</div>
-			<SearchField on:message={updateSearchResults} />
-			<Timeline {filteredData} data={dataMeta.data} on:message={updateTimeRange} />
-			<FilterPanel {filterBy} {freq} {filteredFreq} {selectTopics} on:message={applyFilters} />
-		
-	</div>
-	<div class="main-view">
-		<Splitpanes class="default-theme" style="height:{innerHeight - 80}">
-			<Pane>
-				<div class="card-container">
-					{#each filteredData as paper}
-						<PaperCard
-							{paper}
-							summaryView={structure.summaryView}
-							detailView={structure.detailView}
-							{meta}
-							{showImg}
-						/>
-					{/each}
+<!-- <Header detailView={structure.detailView.show} topView={structure.topView} {freq} /> -->
+
+
+
+<Navbar bind:clientHeight={navHeight}  fluid=true navDivClass="mx-0 flex justify-between" navClass=" px-2 sm:px-4 py-2.5 sticky top-0 z-20" let:hidden let:toggle>
+	{#if condition}
+	<Button class="!p-2" on:click={() => open = !open}><FilterSolid class="w-5 h-5" /></Button>
+	{/if}
+	<NavBrand href="/">
+	<!-- <img src="/images/flowbite-svelte-icon-logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" /> -->
+	<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">IADesign.Space</span>
+	</NavBrand>
+	<Button size='sm' on:click={() => (scrollingModal = true)} >Contribute</Button>
+</Navbar>
+
+	<AddEntry {detailView} {freq} addEntryInfo={structure.topView.addEntry} bind:scrollingModal={scrollingModal}/>
+
+
+
+	<Drawer leftOffset='top-[{navHeight}px]' width='[{sidebarWidth}px]' activateClickOutside={condition} backdrop={false}  divClass='z-20 overflow-y-auto bg-white dark:bg-gray-800' bind:hidden={drawer} id="sidebar2">
+	<Sidebar asideClass="fixed w-80 overflow-x-scroll h-screen">
+		<SidebarWrapper divCass="max-h-10 w-full">
+		  <SidebarGroup>
+			
+				<div class="num-papers">
+					<div class="mdc-typography--headline6">Number of papers:</div>
+					<div class="mdc-typography--headline6">{filteredData.length}/{dataMeta.data.length}</div>
 				</div>
-				{#if !showVis}
-					<div class="hide-button">
-						<IconButton class="material-icons" on:click={setVis}
-							>keyboard_double_arrow_left</IconButton
-						>
-					</div>
-				{/if}
-			</Pane >
-			{#if showVis}
-				<Pane size={30}>
-					
-					<div class="show-button">
-						<IconButton class="material-icons" on:click={setVis}>
-							keyboard_double_arrow_right
-						</IconButton>
-					</div>
-						<Vis data={dataMeta.data} filterBy={filterBy} on:message={applyFilters}/>
-				</Pane>
-			{/if}
-		</Splitpanes>
-	</div>
-</body>
+			
+				<SearchField on:message={updateSearchResults} />
+	
+				<Timeline {filteredData} data={dataMeta.data} on:message={updateTimeRange} />
+			<FilterPanel {filterBy} {freq} {filteredFreq} {selectTopics} on:message={applyFilters} />
+		  </SidebarGroup>
+		</SidebarWrapper>
+	  </Sidebar>
+  </Drawer>
+
+
+
+
+<Splitpanes  theme="default-theme" style="width: {innerWidth - sidebarWidth - 17}px; margin-left: {sidebarWidth}px">
+	<Pane>
+		<div class="card-container">
+			{#each filteredData as paper}
+				<PaperCard
+					{paper}
+					summaryView={structure.summaryView}
+					detailView={structure.detailView}
+					{meta}
+					{showImg}
+				/>
+			{/each}
+		</div>
+		{#if !showVis}
+			<div class="hide-button">
+				<IconButton class="material-icons" on:click={setVis}
+					>keyboard_double_arrow_left</IconButton
+				>
+			</div>
+		{/if}
+	</Pane >
+	{#if showVis}
+		<Pane size={30}>
+			
+			<div class="show-button">
+				<IconButton class="material-icons" on:click={setVis}>
+					keyboard_double_arrow_right
+				</IconButton>
+			</div>
+				<Vis data={dataMeta.data} filterBy={filterBy} on:message={applyFilters}/>
+		</Pane>
+	{/if}
+</Splitpanes>
+
 
 <style>
-	body {
-		font-family: sans-serif;
-		margin-top: 80px;
-		height: 100%;
-		overflow-y: hidden;
-	}
-	.container {
-		display: flex; /* or inline-flex */
-	}
-	.left-panel {
-		order: -1;
-		max-height: 100%;
-		overflow-x: hidden;
-		background-color: var(--mdc-theme-background, #fff);
-		width: 25vh;
-		position: fixed;
-		max-height:  100%;
-		overflow-y: scroll;
-	}
-	.main-view {
-		padding-left: 0px;
-	}
 	.card-container {
 		background-color: rgb(240, 240, 240);
 		padding-right: 0px;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		margin-left: 25vh;
 		justify-content: center;
 		overflow-x: hidden;
 	}
-	.vis-panel {
 
-	}
 	.show-button {
 		position: fixed;
 		top: 80px;
