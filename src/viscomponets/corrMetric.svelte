@@ -4,6 +4,7 @@
   import Slider from '@smui/slider';
   import ZoomSvg from '@svelte-parts/zoom/svg'
   import { createEventDispatcher } from 'svelte';
+  import { categoryFilters } from '../filterStore';
 	const dispatch = createEventDispatcher();
 
   const config = {boxSize:25, minAmount:10, gap: 6,
@@ -195,10 +196,19 @@
     })
   }
   function mouseClick(selectedCate){
+    if (!$categoryFilters.includes(selectedCate.value)){
+      categoryFilters.update((n) => {n.push(selectedCate.value); return n;});
+    }
     addSelection(selectedCate);
     dispatch('message', { text: "updating" });
   }
   function crossClick(selectedCate1, selectedCate2){
+    if (!$categoryFilters.includes(selectedCate1.value)){
+      categoryFilters.update((n) => {n.push(selectedCate1.value); return n;});
+    }
+    if (!$categoryFilters.includes(selectedCate2.value)){
+      categoryFilters.update((n) => {n.push(selectedCate2.value); return n;});
+    }
     addSelection(selectedCate1);
     addSelection(selectedCate2);
     dispatch('message', { text: "updating" });
@@ -217,7 +227,7 @@
   
   $:maxPaperValue = getMaxCount(visData);
   $:maxColorValue = maxPaperValue
-  $:console.log("Here",selectedDimX, selectedDimY);
+  // $:console.log("Here",selectedDimX, selectedDimY);
 // width="{columnSpacing(visData.xAxis.length + 2) + padding.right}"
 // height="{modelRow(visData.yAxis.length + 2) + padding.bottom}"
 let w = 100, h = 100;

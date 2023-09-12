@@ -1,8 +1,11 @@
 <script>
 	import Slider from '@smui/slider';
 	import Tooltip, { Wrapper } from '@smui/tooltip';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
+	import { timeFilters } from '../filterStore';
 	import * as d3 from 'd3';
+
+
 
 	const dispatch = createEventDispatcher();
 
@@ -10,19 +13,24 @@
 	export let filteredData;
 	let minYear;
 	let maxYear;
-	$: valueStart = minYear;
-	$: valueEnd = maxYear;
+
+
 	const padding = {top:3, bottom:3, left:3, right:3};
 	const gap = 1;
 
-	function onRangeUpdate() {
-		console.log(valueStart, valueEnd)
-		dispatch('message', { start: valueStart, end: valueEnd });
-	}
+	// function onRangeUpdate() {
+	// 	console.log(valueStart, valueEnd)
+	// 	dispatch('message', { start: valueStart, end: valueEnd });
+	// }
 
+	
 	[minYear, maxYear] = d3.extent(data, (d) => {
 		if (d.Year && +d.Year) return Number(d.Year);
 	});
+
+	timeFilters.set({start: minYear, end: maxYear})
+
+
 
 	const width = 250, height = 50;
  
@@ -46,10 +54,10 @@
 	const bandWidth = (1.0 / binData.length) * (width - padding.left - padding.right) - gap;
 	$: color = (i) => {
 		let year = i + minYear;
-		if (year < valueStart || year > valueEnd) {
+		if (year < $timeFilters.start || year > $timeFilters.end) {
 			return '#808080';
 		} else {
-			return '#69B3A2';
+			return '#EB4F27';
 		}
 	};
 </script>
@@ -57,18 +65,18 @@
 <div class="timeline-container">
 	<div class="title"><strong>Time Filter:</strong></div>
 	<div class="date-range">
-		<div>{valueStart}</div>
-		<div>{valueEnd}</div>
+		<div>{$timeFilters.start}</div>
+		<div>{$timeFilters.end}</div>
 	</div>
 	<Slider
 		range
-		bind:start={valueStart}
-		bind:end={valueEnd}
+		bind:start={$timeFilters.start}
+		bind:end={$timeFilters.end}
 		min={minYear}
-		max={maxYear}
+		max={maxYear + 0.1}
 		step={1}
-		input$aria-label="Timeline"
-		on:MDCSlider:change={() => onRangeUpdate()}
+		discrete
+		input$aria-label="Range slider"
 	/>
 
 	<div class="chart">

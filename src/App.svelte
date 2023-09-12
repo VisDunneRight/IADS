@@ -10,9 +10,9 @@
 	import structure from './data/survey-config.json';
 	import dataMeta from './data/survey-data.json';
 	import AddEntry from './components/addEntry.svelte';
+	import { categoryFilters, timeFilters } from './filterStore';
+	import { onMount } from 'svelte';
 
-	import { beforeUpdate, onMount } from 'svelte';
-    import { urlParams } from './urlParamStore';
 
 	
 	import { Alert } from 'flowbite-svelte';
@@ -20,14 +20,16 @@
 	import { Modal, Drawer, Button, CloseButton, Sidebar, SidebarBrand, SidebarCta, SidebarDropdownItem, SidebarDropdownWrapper, SidebarGroup, SidebarItem, SidebarWrapper } from 'flowbite-svelte';
   import { sineIn } from 'svelte/easing';
   import { FilterSolid } from 'flowbite-svelte-icons';
-
+  import flatten from 'lodash/flatten';
+  import loFilter from 'lodash/filter';
+  import difference from 'lodash/difference';
 
 	let innerHeight = 0;
 	let innerWidth = 0;
 
 	let showImg = false;
 	let showVis = true;
-	let filteredData = [];
+	//let filteredData = [];
 	let meta = {};
 	let freq = {};
 	let filteredFreq = {};
@@ -79,6 +81,7 @@
 		Object.entries(paper).forEach(([prop, arrValue]) => {
 			freqCount(prop, arrValue, freq);
 		});
+		paper['categories'] = flatten(Object.values(paper))
 		paper['selected'] = false;
 	});
 	function addMissingValues(){
@@ -114,109 +117,109 @@
 		});
 	}
 
-	onMount(async () => {
-		applyFilters();
-	});
+	// onMount(async () => {
+	// 	applyFilters();
+	// });
 
-	function applyFilters() {
-		console.log("ApplyFilters:", filterBy);
-		//This is a shallow copy, we only interested in the order
-		let startingPoint = [...dataMeta.data];
+	// function applyFilters() {
+	// 	console.log("ApplyFilters:", filterBy);
+	// 	//This is a shallow copy, we only interested in the order
+	// 	let startingPoint = [...dataMeta.data];
 
-		//Filter by search bar
-		if (filter.searchWord !== '') {
-			startingPoint = startingPoint.filter((paper) =>
-				paper.Name.toLowerCase().includes(filter.searchWord.toLowerCase())
-			);
-		}
-		if (filter.yearRange[0] > 0)
-			startingPoint = startingPoint.filter(
-				(paper) => filter.yearRange[0] <= +paper.Year && +paper.Year <= filter.yearRange[1]
-			);
+	// 	//Filter by search bar
+	// 	if (filter.searchWord !== '') {
+	// 		startingPoint = startingPoint.filter((paper) =>
+	// 			paper.Name.toLowerCase().includes(filter.searchWord.toLowerCase())
+	// 		);
+	// 	}
+	// 	if (filter.yearRange[0] > 0)
+	// 		startingPoint = startingPoint.filter(
+	// 			(paper) => filter.yearRange[0] <= +paper.Year && +paper.Year <= filter.yearRange[1]
+	// 		);
 
-			const re = new RegExp("([0-9]+)")
-		//Filter by categories
-		filterBy.forEach((group) => {
-			if(group.values){
-				if (group.selected && group.selected.length > 0) {
-					const selected = group.selected.map((sel) => {
-						return re.test(sel) ? sel.split(') ')[1]: sel;
-					});
-					let res = [];
-					startingPoint.forEach((paper) => {
-						let found = false;
-						if (Array.isArray(paper[group.name])) {
-							const listCate = paper[group.name];
-							found = true;
-							selected.forEach((prop) => {
-								if (listCate.includes(prop) === false) {
-									found = false;
-									return;
-								}
-							});
-						} else if (typeof paper[group.name] === 'string') {
-							found = selected.includes(paper[group.name]);
-						}
+	// 		const re = new RegExp("([0-9]+)")
+	// 	//Filter by categories
+	// 	filterBy.forEach((group) => {
+	// 		if(group.values){
+	// 			if (group.selected && group.selected.length > 0) {
+	// 				const selected = group.selected.map((sel) => {
+	// 					return re.test(sel) ? sel.split(') ')[1]: sel;
+	// 				});
+	// 				let res = [];
+	// 				startingPoint.forEach((paper) => {
+	// 					let found = false;
+	// 					if (Array.isArray(paper[group.name])) {
+	// 						const listCate = paper[group.name];
+	// 						found = true;
+	// 						selected.forEach((prop) => {
+	// 							if (listCate.includes(prop) === false) {
+	// 								found = false;
+	// 								return;
+	// 							}
+	// 						});
+	// 					} else if (typeof paper[group.name] === 'string') {
+	// 						found = selected.includes(paper[group.name]);
+	// 					}
 
-						if (found) {
-							res.push(paper);
-						}
-					});
-					startingPoint = res;
-				}
-			} else {
-				group.categories.forEach((option)=>{
-					if (option.selected && option.selected.length > 0) {
-					const selected = option.selected.map((sel) => {
-						return re.test(sel) ? sel.split(') ')[1]: sel;
-					});
-					let res = [];
-					startingPoint.forEach((paper) => {
-						let found = false;
-						if (Array.isArray(paper[option.name])) {
-							const listCate = paper[option.name];
-							found = true;
-							selected.forEach((prop) => {
-								if (listCate.includes(prop) === false) {
-									found = false;
-									return;
-								}
-							});
-						} else if (typeof paper[option.name] === 'string') {
-							found = selected.includes(paper[option.name]);
-						}
-						if (found) {
-							res.push(paper);
-						}
-					});
-					startingPoint = res;
-				}
-				})
-			}
-		});
-		Object.entries(startingPoint).forEach(([prop, arrValue]) => {
-			freqCount(prop, arrValue, filteredFreq);
-		});
-		filteredData = startingPoint.sort((p1, p2) => {
-			if(Number(p1.Year) < Number(p2.Year)){
-				return 1;
-			} else {
-				return -1;
-			}
-		});
+	// 					if (found) {
+	// 						res.push(paper);
+	// 					}
+	// 				});
+	// 				startingPoint = res;
+	// 			}
+	// 		} else {
+	// 			group.categories.forEach((option)=>{
+	// 				if (option.selected && option.selected.length > 0) {
+	// 				const selected = option.selected.map((sel) => {
+	// 					return re.test(sel) ? sel.split(') ')[1]: sel;
+	// 				});
+	// 				let res = [];
+	// 				startingPoint.forEach((paper) => {
+	// 					let found = false;
+	// 					if (Array.isArray(paper[option.name])) {
+	// 						const listCate = paper[option.name];
+	// 						found = true;
+	// 						selected.forEach((prop) => {
+	// 							if (listCate.includes(prop) === false) {
+	// 								found = false;
+	// 								return;
+	// 							}
+	// 						});
+	// 					} else if (typeof paper[option.name] === 'string') {
+	// 						found = selected.includes(paper[option.name]);
+	// 					}
+	// 					if (found) {
+	// 						res.push(paper);
+	// 					}
+	// 				});
+	// 				startingPoint = res;
+	// 			}
+	// 			})
+	// 		}
+	// 	});
+	// 	Object.entries(startingPoint).forEach(([prop, arrValue]) => {
+	// 		freqCount(prop, arrValue, filteredFreq);
+	// 	});
+	// 	filteredData = startingPoint.sort((p1, p2) => {
+	// 		if(Number(p1.Year) < Number(p2.Year)){
+	// 			return 1;
+	// 		} else {
+	// 			return -1;
+	// 		}
+	// 	});
 
-		selectTopics = [];
-		filterBy.forEach((filter)=>{
-			if('groupName' in filter){
-				filter.categories.forEach((cate)=>{
-					selectTopics = selectTopics.concat(cate.selected);
-				})
-			} else {
-				selectTopics = selectTopics.concat(filter.selected);
-			}
-		})
-		filterBy = [...filterBy];
-	}
+	// 	selectTopics = [];
+	// 	filterBy.forEach((filter)=>{
+	// 		if('groupName' in filter){
+	// 			filter.categories.forEach((cate)=>{
+	// 				selectTopics = selectTopics.concat(cate.selected);
+	// 			})
+	// 		} else {
+	// 			selectTopics = selectTopics.concat(filter.selected);
+	// 		}
+	// 	})
+	// 	filterBy = [...filterBy];
+	// }
 
 	function setVis() {
 		showVis = !showVis;
@@ -224,12 +227,12 @@
 
 	function updateSearchResults(search) {
 		filter.searchWord = search.detail.text;
-		applyFilters();
+		//applyFilters();
 	}
 	function updateTimeRange(ranges) {
 		filter.yearRange[0] = ranges.detail.start;
 		filter.yearRange[1] = ranges.detail.end;
-		applyFilters();
+		//applyFilters();
 	}
 
 
@@ -261,13 +264,36 @@
 	let scrollingModal = false;
 
   let detailView = structure.detailView.show;
+  
+  	let filteredData = dataMeta.data;
+  	let catFilters = categoryFilters.subscribe((value) => {
+		filteredData = loFilter(dataMeta.data, function(o) {return difference(value, o.categories).length === 0});
+		filteredData = loFilter(filteredData, function(o) {return o.Year >= $timeFilters.start && o.Year <= $timeFilters.end });
+		console.log("update");
+	});
+	
+	let tFilters = timeFilters.subscribe((value) => {
+		filteredData = loFilter(dataMeta.data, function(o) {return o.Year >= value.start && o.Year <= value.end });
+		filteredData = loFilter(filteredData, function(o) {return difference($categoryFilters, o.categories).length === 0});
+		console.log(value)
+	});
+
+	// $: console.log(catFilters);
+
+	
+	//$: filteredData = loFilter(dataMeta.data, function(o) {return difference(catFilters, o.categories).length === 0});
+
+	
+
+	// function updateFilter(){
+	// 	console.log("update");
+	// }
+	
+	
 
 </script>
 
 <svelte:window bind:innerHeight bind:innerWidth />
-<!-- <Header detailView={structure.detailView.show} topView={structure.topView} {freq} /> -->
-
-
 
 <Navbar bind:clientHeight={navHeight}  fluid=true navDivClass="mx-0 flex justify-between" navClass=" px-2 sm:px-4 py-2.5 sticky top-0 z-20" let:hidden let:toggle>
 	{#if condition}
@@ -297,7 +323,7 @@
 				<SearchField on:message={updateSearchResults} />
 	
 				<Timeline {filteredData} data={dataMeta.data} on:message={updateTimeRange} />
-			<FilterPanel {filterBy} {freq} {filteredFreq} {selectTopics} on:message={applyFilters} />
+			<FilterPanel {filterBy} {freq} {filteredFreq} {selectTopics} />
 		  </SidebarGroup>
 		</SidebarWrapper>
 	  </Sidebar>
@@ -315,7 +341,6 @@
 					summaryView={structure.summaryView}
 					detailView={structure.detailView}
 					{meta}
-					{showImg}
 				/>
 			{/each}
 		</div>
@@ -335,7 +360,7 @@
 					keyboard_double_arrow_right
 				</IconButton>
 			</div>
-				<Vis data={dataMeta.data} filterBy={filterBy} on:message={applyFilters}/>
+				<Vis data={dataMeta.data} filterBy={filterBy}/>
 		</Pane>
 	{/if}
 </Splitpanes>

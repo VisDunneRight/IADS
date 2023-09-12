@@ -1,5 +1,5 @@
 <script>
-	import Card, {
+	import {
 		Content,
 		PrimaryAction,
 		Media,
@@ -10,24 +10,24 @@
 	} from '@smui/card';
 	import Snackbar, {  Label } from '@smui/snackbar';
 	import IconButton from '@smui/icon-button';
-	import Button, { Icon } from '@smui/button';
-	import List, { Item, Separator, Text } from '@smui/list';
+	import  { Text } from '@smui/list';
 	import Clipboard from 'svelte-clipboard';
-	import Menu from '@smui/menu';
-	import Dialog from '@smui/dialog';
-	import PaperDetail from './paperDetail.svelte';
-	import Multiselect from './multiselect.svelte';
-	import {parseBibFile, normalizeFieldValue} from "bibtex";
-    import Tooltip, { Wrapper } from '@smui/tooltip';
+	
+    import { Wrapper } from '@smui/tooltip';
     import Chip, { Set} from '@smui/chips';
     import { urlParams } from '../urlParamStore';
+	import { Card, Button, Toggle, Modal } from 'flowbite-svelte';
+  import { ArrowRightOutline } from 'flowbite-svelte-icons';
+    import Dialog from '@smui/dialog';
+    import PaperDetail from './paperDetail.svelte';
 	
 
 	export let paper;
 	export let summaryView;
 	export let detailView;
 	export let meta;
-	let menu;
+	
+
 	let snackbarWithClose;
 
 	// let urlParams = new URLSearchParams(window.location.search); 
@@ -36,10 +36,13 @@
 		params = value;
 	});
     $: open = params.get('paper') == paper.DOI;
+	// $: console.log(params);
+
+	
 
 </script>
 
-
+<!-- 
 	<Snackbar bind:this={snackbarWithClose}>
 		<Label>Copied bibtex.</Label>
 		<Actions>
@@ -54,9 +57,21 @@
 				<IconButton on:click={() => {window.history.replaceState(null, null, '/');} } class="material-icons">close</IconButton>
 			</div>
 		</Content>
-	</Dialog>
+	</Dialog> -->
 
-	<Card class={summaryView.view === "image" ? 'card-image' : 'card-text'} style="width: 500px; height: 400px; margin: 10px">
+	<Modal title="Terms of Service" bind:open={open} autoclose outsideclose>
+		<PaperDetail {paper} {detailView} {meta} />
+	  </Modal>
+
+	<Card  on:click={() => (open = true)} img="/images/{paper.img}" class="mb-4">
+		<h5 class="mb-2 text-2x2 font-bold tracking-tight text-gray-900 dark:text-white">{paper.Name}</h5>
+		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">{paper.Authors}, {paper.Year}</p>
+		<Button>
+		  Read more <ArrowRightOutline class="w-3.5 h-3.5 ml-2 text-white" />
+		</Button>
+	  </Card>
+
+	<!-- <Card class={summaryView.view === "image" ? 'card-image' : 'card-text'} style="width: 500px; height: 400px; margin: 10px">
 		<PrimaryAction on:click={() => {window.history.replaceState(null, null, '?paper=' + paper.DOI);}}>
 		  	<Media class="card-media-16x9" aspectRatio="16x9" style="background-image: url(/images/{paper.img}); height: 200px" />
 			<Content class="mdc-typography--body2">
@@ -89,9 +104,9 @@
 					  class="material-icons"
 					  on:click={() => window.open('https://doi.org/' + paper.DOI)}>
 					  link
-					</IconButton>
-					<Tooltip  xPos="center" yPos="above">Digital Library Link</Tooltip>
-					</Wrapper>
+					</IconButton> -->
+					<!-- <Tooltip  xPos="center" yPos="above">Digital Library Link</Tooltip> -->
+					<!-- </Wrapper>
 					<Wrapper>
 					{#if paper["Open Access"] == "na"}
 					<IconButton
@@ -106,9 +121,9 @@
 						on:click={() => window.open(paper['Open Access'])}>
 						lock_open
 					</IconButton>
-					{/if}
-					<Tooltip  xPos="center" yPos="above">Open Access Link</Tooltip>
-					</Wrapper>
+					{/if} -->
+					<!-- <Tooltip  xPos="center" yPos="above">Open Access Link</Tooltip> -->
+					<!-- </Wrapper>
 					<Wrapper>
 						<Clipboard
 						text={paper.Bibtex}
@@ -120,11 +135,11 @@
 						class="material-icons"
 						on:click={copy}>
 						content_copy
-					</IconButton>
+					</IconButton> -->
 					
-					<Tooltip  xPos="center" yPos="above">Copy BibTex</Tooltip>
-				</Clipboard>
-					</Wrapper>
+					<!-- <Tooltip  xPos="center" yPos="above">Copy BibTex</Tooltip> -->
+				<!-- </Clipboard>
+					</Wrapper> -->
 					<!-- <Wrapper>
 						<IconButton
 							class="material-icons"
@@ -157,9 +172,9 @@
 						</List>
 					</Menu>
 					</IconButton> -->
-				  </ActionIcons>
+				  <!-- </ActionIcons>
 				</Actions>
-			  </Card>
+			  </Card> -->
 
 			 
 	
@@ -240,9 +255,6 @@
 	</Card> --> 
 
 <style>
-	.menu-loc{
-		/* left:-10px !important; */
-	}
 	.multi-select {
 		display: flex;
 		align-items: center;
