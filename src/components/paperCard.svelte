@@ -90,7 +90,7 @@
 					  on:click={() => window.open('https://doi.org/' + paper.DOI)}>
 					  link
 					</IconButton>
-					<Tooltip  xPos="center" yPos="above">Digital Library Link</Tooltip>
+					<!-- <Tooltip  xPos="center" yPos="above">Digital Library Link</Tooltip> -->
 					</Wrapper>
 					<Wrapper>
 					{#if paper["Open Access"] == "na"}
@@ -107,7 +107,7 @@
 						lock_open
 					</IconButton>
 					{/if}
-					<Tooltip  xPos="center" yPos="above">Open Access Link</Tooltip>
+					<!-- <Tooltip  xPos="center" yPos="above">Open Access Link</Tooltip> -->
 					</Wrapper>
 					<Wrapper>
 						<Clipboard
@@ -122,7 +122,7 @@
 						content_copy
 					</IconButton>
 					
-					<Tooltip  xPos="center" yPos="above">Copy BibTex</Tooltip>
+					<!-- <Tooltip  xPos="center" yPos="above">Copy BibTex</Tooltip> -->
 				</Clipboard>
 					</Wrapper>
 					<!-- <Wrapper>

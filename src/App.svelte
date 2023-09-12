@@ -315,7 +315,6 @@
 					summaryView={structure.summaryView}
 					detailView={structure.detailView}
 					{meta}
-					{showImg}
 				/>
 			{/each}
 		</div>
