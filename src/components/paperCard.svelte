@@ -1,5 +1,5 @@
 <script>
-	import Card, {
+	import  {
 		Content,
 		PrimaryAction,
 		Media,
@@ -10,7 +10,7 @@
 	} from '@smui/card';
 	import Snackbar, {  Label } from '@smui/snackbar';
 	import IconButton from '@smui/icon-button';
-	import Button, { Icon } from '@smui/button';
+	import  { Icon } from '@smui/button';
 	import List, { Item, Separator, Text } from '@smui/list';
 	import Clipboard from 'svelte-clipboard';
 	import Menu from '@smui/menu';
@@ -21,6 +21,10 @@
     import Tooltip, { Wrapper } from '@smui/tooltip';
     import Chip, { Set} from '@smui/chips';
     import { urlParams } from '../urlParamStore';
+	import { Card, Button, Toggle, Badge, Modal } from 'flowbite-svelte';
+  import { ArrowRightOutline, LinkSolid, CopySolid, LockOpenSolid, LockSolid} from 'flowbite-svelte-icons';
+  import { tree } from 'd3';
+  import { afterUpdate, beforeUpdate, onMount } from 'svelte';
 	
 
 	export let paper;
@@ -35,12 +39,36 @@
 	urlParams.subscribe((value) => {
 		params = value;
 	});
-    $: open = params.get('paper') == paper.DOI;
+    
+	
+	
+	
+	let modal;
+	
+	
+	let modalState = false;
+	
 
+
+	
+	onMount(() => {
+		if (params.get('paper') == paper.DOI){
+			modalState = true;
+			window.history.replaceState(null, null, '?paper=' + paper.DOI);
+		} 
+	});
+
+	$: if (!modalState){
+		console.log('remove')
+		window.history.replaceState(null, null, '/');
+	} else {
+		window.history.replaceState(null, null, '?paper=' + paper.DOI);
+	} 
+		
 </script>
 
 
-	<Snackbar bind:this={snackbarWithClose}>
+	<!-- <Snackbar bind:this={snackbarWithClose}>
 		<Label>Copied bibtex.</Label>
 		<Actions>
 			<IconButton class="material-icons" title="Dismiss">close</IconButton>
@@ -54,8 +82,51 @@
 				<IconButton on:click={() => {window.history.replaceState(null, null, '/');} } class="material-icons">close</IconButton>
 			</div>
 		</Content>
-	</Dialog>
+	</Dialog> -->
 
+	<!-- <Button on:click={() => (defaultModal = true)}>Default modal</Button> -->
+	
+	<Modal size='lg' bind:this={modal} id='modal' title="Terms of Service" bind:open={modalState} outsideclose>
+		<PaperDetail {paper} {detailView} {meta} />
+	<!-- <svelte:fragment slot="footer">
+			<Button on:click={() => alert('Handle "success"')}>I accept</Button>
+			<Button color="alternative">Decline</Button>
+		</svelte:fragment> -->
+	</Modal>
+
+	<Card on:click={() => {modalState = true; window.history.replaceState(null, null, '?paper=' + paper.DOI);}} class="w-full m-1 relative" padding="none">
+	<Media class="card-media-16x9" aspectRatio="16x9" style="background-image: url(/images/{paper.img}); height: 200px" />
+		<h5 class="pl-1 pt-1 pr-1 text-md font-bold tracking-tight text-gray-900 dark:text-white">{paper.Name}</h5>
+		<p class="pl-1 mb-14 font-normal text-gray-700 dark:text-gray-400 leading-tight">{paper.Year}</p>
+		<div style="position: absolute; bottom: 0; width: 100%; display:flex; justify-content: space-between; align-items: center;">
+			<div>
+				<Badge class='m-1' color='dark' rounded>{paper.Opportunity}</Badge>
+				<Badge class='m-1' color='dark' rounded>{paper.Contribution}</Badge>
+			</div>
+			<div>
+				<Button on:click={() => window.open('https://doi.org/' + paper.DOI)} outline={true} size='xs' pill={true} class="!p-2 mb-2 mr-0.5 border-0"><LinkSolid class="w-4 h-4" /></Button>
+				{#if paper["Open Access"] == "na"}
+				<Button disabled outline={true} size='xs' pill={true} class="!p-2 mb-2  mr-0.5 border-0"><LockSolid class="w-4 h-4" /></Button>
+				{:else}
+				<Button on:click={() => window.open(paper['Open Access'])} outline={true} size='xs' pill={true} class="!p-2 mb-2  mr-0.5 border-0"><LockOpenSolid class="w-4 h-4" /></Button>
+				{/if}
+				<Wrapper>
+					<Clipboard
+					text={paper.Bibtex}
+					let:copy
+					on:copy={() => {
+						snackbarWithClose.open();
+					}}>
+					<Button on:click={copy} outline={true} size='xs' pill={true} class="!p-2 mb-2  mr-1 border-0"><CopySolid class="w-4 h-4" /></Button>
+				</Clipboard>
+				</Wrapper>
+			</div>
+    	</div>
+	
+
+	</Card>
+
+<!--
 	<Card class={summaryView.view === "image" ? 'card-image' : 'card-text'} style="width: 500px; height: 400px; margin: 10px">
 		<PrimaryAction on:click={() => {window.history.replaceState(null, null, '?paper=' + paper.DOI);}}>
 		  	<Media class="card-media-16x9" aspectRatio="16x9" style="background-image: url(/images/{paper.img}); height: 200px" />
@@ -89,9 +160,9 @@
 					  class="material-icons"
 					  on:click={() => window.open('https://doi.org/' + paper.DOI)}>
 					  link
-					</IconButton>
+					</IconButton> -->
 					<!-- <Tooltip  xPos="center" yPos="above">Digital Library Link</Tooltip> -->
-					</Wrapper>
+					<!-- </Wrapper>
 					<Wrapper>
 					{#if paper["Open Access"] == "na"}
 					<IconButton
@@ -106,9 +177,9 @@
 						on:click={() => window.open(paper['Open Access'])}>
 						lock_open
 					</IconButton>
-					{/if}
+					{/if} -->
 					<!-- <Tooltip  xPos="center" yPos="above">Open Access Link</Tooltip> -->
-					</Wrapper>
+					<!-- </Wrapper>
 					<Wrapper>
 						<Clipboard
 						text={paper.Bibtex}
@@ -121,10 +192,10 @@
 						on:click={copy}>
 						content_copy
 					</IconButton>
-					
+					 -->
 					<!-- <Tooltip  xPos="center" yPos="above">Copy BibTex</Tooltip> -->
-				</Clipboard>
-					</Wrapper>
+				<!-- </Clipboard>
+					</Wrapper> -->
 					<!-- <Wrapper>
 						<IconButton
 							class="material-icons"
@@ -157,9 +228,9 @@
 						</List>
 					</Menu>
 					</IconButton> -->
-				  </ActionIcons>
+				  <!-- </ActionIcons>
 				</Actions>
-			  </Card>
+			  </Card> -->
 
 			 
 	
@@ -240,9 +311,7 @@
 	</Card> --> 
 
 <style>
-	.menu-loc{
-		/* left:-10px !important; */
-	}
+	
 	.multi-select {
 		display: flex;
 		align-items: center;
