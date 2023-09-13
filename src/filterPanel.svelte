@@ -4,7 +4,7 @@
 	import IconButton, { Icon } from '@smui/icon-button';
 	import Chip, { Set, TrailingAction, Text } from '@smui/chips';
 	import { createEventDispatcher } from 'svelte';
-	import { categoryFilters } from './filterStore';
+	import { filters, categoryFilters } from './filterStore';
 	const dispatch = createEventDispatcher();
 	export let freq = [];
 	export let filteredFreq = [];
@@ -43,23 +43,27 @@
 			}
 		});
 		filterBy = filterBy;
-		dispatch('message', { text: 'Remove one topic' });
+
+		
 	}
+
+
+	
 
 </script>
 
 <div class="accordion-container">
 	<div class="fliter-papers">
 		<div class="mdc-typography--headline4">Filters:</div>
-		<IconButton class="material-icons" on:click={clearSelections} title="reset Selection"
+		<IconButton class="material-icons" on:click={() => filters.update((n) => { n.categoryFilters = []; return n;})} title="reset Selection"
 			>replay</IconButton
 		>
 	</div>
 	<div>
-		<Set chips={$categoryFilters} let:chip input >
+		<Set chips={$filters.categoryFilters} let:chip input >
 			<Chip {chip} >
 				<Text>{chip}</Text>
-				<TrailingAction icon$class="material-icons" on:click={(e) => categoryFilters.update((n) => { n.splice(chip, 1); return n})}>cancel</TrailingAction>
+				<TrailingAction icon$class="material-icons" on:click={(e) => filters.update((n) => { n.categoryFilters.splice(chip, 1); return n})}>cancel</TrailingAction>
 			</Chip>
 		</Set>
 	</div>
@@ -73,7 +77,7 @@
 							<FilterGroup
 								{...prop}
 								freqGroup={freq[prop.name]}
-								on:message
+								
 							/>
 						</Panel>
 					{:else}
@@ -83,8 +87,7 @@
 							<FilterGroup
 								{...option}
 								freqGroup={freq[option.name]}
-								on:message
-								}
+								
 							/>
 						</Panel>
 						{/each}

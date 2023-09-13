@@ -4,6 +4,8 @@
 	import Fab from '@smui/fab';
 	import { Icon } from '@smui/common';
 	import { createEventDispatcher } from 'svelte';
+    import { filters } from '../filterStore';
+    import filter from 'svelte-select/filter';
 
 	const dispatch = createEventDispatcher();
 	let searchText = '';
@@ -21,8 +23,8 @@
 <div class="solo-container solo-container-prop">
 	<Paper class="solo-paper" elevation={6}>
 		<Icon class="material-icons">search</Icon>
-		<Input bind:value={searchText} on:input={onSearch} placeholder="Search" class="solo-input" />
-		<Icon class="material-icons clear" on:click={clearSearch}>clear</Icon>
+		<Input bind:value={$filters.searchFilters} on:input={onSearch} placeholder="Search" class="solo-input" />
+		<Icon class="material-icons clear" on:click={() => filters.update((n) => {n.searchFilters = ""; return n})}>clear</Icon>
 	</Paper>
 </div>
 

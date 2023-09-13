@@ -2,7 +2,7 @@
 	import Slider from '@smui/slider';
 	import Tooltip, { Wrapper } from '@smui/tooltip';
 	import { createEventDispatcher, onMount } from 'svelte';
-	import { timeFilters } from '../filterStore';
+	import { filters, timeFilters } from '../filterStore';
 	import * as d3 from 'd3';
 
 
@@ -28,9 +28,7 @@
 		if (d.Year && +d.Year) return Number(d.Year);
 	});
 
-	timeFilters.set({start: minYear, end: maxYear})
-
-
+	filters.update((n) => { n.timeFilters = {start: minYear, end: maxYear}; return n;})
 
 	const width = 250, height = 50;
  
@@ -54,7 +52,7 @@
 	const bandWidth = (1.0 / binData.length) * (width - padding.left - padding.right) - gap;
 	$: color = (i) => {
 		let year = i + minYear;
-		if (year < $timeFilters.start || year > $timeFilters.end) {
+		if (year < $filters.timeFilters.start || year > $filters.timeFilters.end) {
 			return '#808080';
 		} else {
 			return '#EB4F27';
@@ -65,17 +63,16 @@
 <div class="timeline-container">
 	<div class="title"><strong>Time Filter:</strong></div>
 	<div class="date-range">
-		<div>{$timeFilters.start}</div>
-		<div>{$timeFilters.end}</div>
+		<div>{$filters.timeFilters.start}</div>
+		<div>{$filters.timeFilters.end}</div>
 	</div>
 	<Slider
 		range
-		bind:start={$timeFilters.start}
-		bind:end={$timeFilters.end}
+		bind:start={$filters.timeFilters.start}
+		bind:end={$filters.timeFilters.end}
 		min={minYear}
 		max={maxYear + 0.1}
 		step={1}
-		discrete
 		input$aria-label="Range slider"
 	/>
 

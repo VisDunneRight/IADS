@@ -25,12 +25,8 @@
 	});
     
 	
-	
-	
-	let modal;
-	
-	
 	let modalState = false;
+	
 	
 	onMount(() => {
 		if (params.get('paper') == paper.DOI){
@@ -50,7 +46,7 @@
 
 
 
-	<Modal bind:this={modal} size='lg' id='modal' title="Terms of Service" bind:open={modalState} outsideclose>
+	<Modal size='lg' id='modal' title="Paper Detail" bind:open={modalState} outsideclose>
 		<PaperDetail {paper} {detailView} {meta} />
 	<!-- <svelte:fragment slot="footer">
 			<Button on:click={() => alert('Handle "success"')}>I accept</Button>
@@ -65,8 +61,8 @@
 		<p class="pl-1 mb-14 font-normal text-gray-700 dark:text-gray-400 leading-tight">{paper.Year}</p>
 		<div style="position: absolute; bottom: 0; width: 100%; display:flex; justify-content: space-between; align-items: center;">
 			<div>
-				<Badge class='m-1' color='dark' rounded>{paper.Opportunity}</Badge>
-				<Badge class='m-1' color='dark' rounded>{paper["Contribution Type"]}</Badge>
+				<Badge class='ml-0.5' color='dark' rounded>{paper.Opportunity}</Badge>
+				<Badge class='ml-0' color='dark' rounded>{paper["Contribution Type"]}</Badge>
 			</div>
 			<div>
 				<Button on:click={(event) => {event.stopPropagation(); window.open('https://doi.org/' + paper.DOI);}} outline={true} size='xs' pill={true} class="!p-2 mb-2 mr-0.5 border-0"><LinkSolid class="w-4 h-4" /></Button>

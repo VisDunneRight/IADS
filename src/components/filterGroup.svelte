@@ -1,11 +1,11 @@
 <script>
 	import Chip, { Set, Text } from '@smui/chips';
-	import { createEventDispatcher } from 'svelte';
+	import { afterUpdate, createEventDispatcher } from 'svelte';
 	import Button, { Label } from '@smui/button';
 	import { onMount } from 'svelte';
 	import { Header, Content } from '@smui-extra/accordion';
-	import { categoryFilters } from '../filterStore';
-
+	import { filters, categoryFilters } from '../filterStore';
+	import difference from 'lodash/difference';
 	const dispatch = createEventDispatcher();
 
 	export let name;
@@ -19,7 +19,7 @@
 	let showCount = 10;
 	let listSelected = [''];
 
-	listVal = values;
+	//listVal = values;
 	
 
 	const updateShowCount = (newCount) => {
@@ -32,9 +32,7 @@
 			showCount = sShowCount;
 		}
 		const data = values.slice(0, showCount);
-		listVal = data.map((name) => {
-			return '(' + freqGroup[name] + ') ' + name;
-		});
+		return freqGroup;
 	};
 
 	const updateSelection = (selected) => {
@@ -53,9 +51,11 @@
 	// }
 	listSelected = [...selected];
 
-	// onMount(async () => {
-	// 	updateShowCount(showCount);
-	// });
+	onMount(async () => {
+		listVal = updateShowCount(showCount);
+	});
+
+	selected = $filters.categoryFilters
 	
 </script>
 
@@ -63,20 +63,18 @@
 	<div class="sizing">
 		<div>
 			{name}
-			{#if listSelected !== undefined && listSelected.length}
 				<span style="color:gray">
-					({listSelected.length})
+					({$filters.categoryFilters.length - difference($filters.categoryFilters, values).length   })
 				</span>
-			{/if}
 		</div>
 	</div>
 </Header>
 
 <Content>
-	<Set chips={listVal} let:chip filter 
-				bind:selected={$categoryFilters}>
+	<Set chips={values} let:chip filter 
+				bind:selected={$filters.categoryFilters}>
 		<Chip {chip} touch>
-			<Text>{chip}</Text>
+			<Text>{chip} ({listVal[chip]})</Text>
 		</Chip>
 	</Set>
 	<div>

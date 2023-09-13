@@ -4,7 +4,7 @@
   import Slider from '@smui/slider';
   import ZoomSvg from '@svelte-parts/zoom/svg'
   import { createEventDispatcher } from 'svelte';
-  import { categoryFilters } from '../filterStore';
+  import { filters, categoryFilters } from '../filterStore';
 	const dispatch = createEventDispatcher();
 
   const config = {boxSize:25, minAmount:10, gap: 6,
@@ -196,18 +196,18 @@
     })
   }
   function mouseClick(selectedCate){
-    if (!$categoryFilters.includes(selectedCate.value)){
-      categoryFilters.update((n) => {n.push(selectedCate.value); return n;});
+    if (!$filters.categoryFilters.includes(selectedCate.value)){
+      filters.update((n) => {n.categoryFilters.push(selectedCate.value); return n;});
     }
     addSelection(selectedCate);
     dispatch('message', { text: "updating" });
   }
   function crossClick(selectedCate1, selectedCate2){
-    if (!$categoryFilters.includes(selectedCate1.value)){
-      categoryFilters.update((n) => {n.push(selectedCate1.value); return n;});
+    if (!$filters.categoryFilters.includes(selectedCate1.value)){
+      filters.update((n) => {n.categoryFilters.push(selectedCate1.value); return n;});
     }
-    if (!$categoryFilters.includes(selectedCate2.value)){
-      categoryFilters.update((n) => {n.push(selectedCate2.value); return n;});
+    if (!$filters.categoryFilters.includes(selectedCate2.value)){
+      filters.update((n) => {n.categoryFilters.push(selectedCate2.value); return n;});
     }
     addSelection(selectedCate1);
     addSelection(selectedCate2);
