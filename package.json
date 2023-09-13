@@ -51,7 +51,6 @@
     "vite": "^4.1.0"
   },
   "dependencies": {
-    "@svelte-parts/zoom": "^0.0.23",
     "bibtex": "^0.9.0",
     "d3": "^7.8.2",
     "flowbite-svelte": "^0.44.15",
@@ -59,6 +58,7 @@
     "lodash": "^4.17.21",
     "shade-blend-color": "^1.0.0",
     "svelte-material-ui": "^7.0.0-beta.0",
+    "svelte-parts": "^0.0.6",
     "svelte-select": "^5.2.1",
     "svelte-splitpanes": "^0.8.0"
   }

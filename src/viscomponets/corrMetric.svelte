@@ -2,7 +2,7 @@
   import { blend_colors, defaultColors } from './util';
   import * as d3 from 'd3';
   import Slider from '@smui/slider';
-  import ZoomSvg from '@svelte-parts/zoom/svg'
+  import { ZoomSvg } from 'svelte-parts/zoom'
   import { createEventDispatcher } from 'svelte';
   import { filters, categoryFilters } from '../filterStore';
 	const dispatch = createEventDispatcher();

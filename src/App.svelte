@@ -264,7 +264,7 @@
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		justify-content: center;
+		justify-content: space-evenly;
 		overflow-x: hidden;
 	}
 
