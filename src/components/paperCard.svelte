@@ -1,5 +1,6 @@
 <script>
-	import  {
+
+	import {
 		Content,
 		PrimaryAction,
 		Media,
@@ -10,28 +11,29 @@
 	} from '@smui/card';
 	import Snackbar, {  Label } from '@smui/snackbar';
 	import IconButton from '@smui/icon-button';
+
 	import  { Icon } from '@smui/button';
 	import List, { Item, Separator, Text } from '@smui/list';
+	import  { Text } from '@smui/list';
 	import Clipboard from 'svelte-clipboard';
-	import Menu from '@smui/menu';
-	import Dialog from '@smui/dialog';
-	import PaperDetail from './paperDetail.svelte';
-	import Multiselect from './multiselect.svelte';
-	import {parseBibFile, normalizeFieldValue} from "bibtex";
-    import Tooltip, { Wrapper } from '@smui/tooltip';
+	
+    import { Wrapper } from '@smui/tooltip';
     import Chip, { Set} from '@smui/chips';
     import { urlParams } from '../urlParamStore';
+
 	import { Card, Button, Toggle, Badge, Modal } from 'flowbite-svelte';
   import { ArrowRightOutline, LinkSolid, CopySolid, LockOpenSolid, LockSolid} from 'flowbite-svelte-icons';
   import { tree } from 'd3';
   import { afterUpdate, beforeUpdate, onMount } from 'svelte';
+
 	
 
 	export let paper;
 	export let summaryView;
 	export let detailView;
 	export let meta;
-	let menu;
+	
+
 	let snackbarWithClose;
 
 	// let urlParams = new URLSearchParams(window.location.search); 
@@ -39,6 +41,7 @@
 	urlParams.subscribe((value) => {
 		params = value;
 	});
+
     
 	
 	
@@ -68,7 +71,11 @@
 </script>
 
 
+</script>
+
+
 	<!-- <Snackbar bind:this={snackbarWithClose}>
+
 		<Label>Copied bibtex.</Label>
 		<Actions>
 			<IconButton class="material-icons" title="Dismiss">close</IconButton>
@@ -83,6 +90,7 @@
 			</div>
 		</Content>
 	</Dialog> -->
+
 
 	<!-- <Button on:click={() => (defaultModal = true)}>Default modal</Button> -->
 	
@@ -126,8 +134,7 @@
 
 	</Card>
 
-<!--
-	<Card class={summaryView.view === "image" ? 'card-image' : 'card-text'} style="width: 500px; height: 400px; margin: 10px">
+
 		<PrimaryAction on:click={() => {window.history.replaceState(null, null, '?paper=' + paper.DOI);}}>
 		  	<Media class="card-media-16x9" aspectRatio="16x9" style="background-image: url(/images/{paper.img}); height: 200px" />
 			<Content class="mdc-typography--body2">
@@ -191,8 +198,10 @@
 						class="material-icons"
 						on:click={copy}>
 						content_copy
+
 					</IconButton>
 					 -->
+
 					<!-- <Tooltip  xPos="center" yPos="above">Copy BibTex</Tooltip> -->
 				<!-- </Clipboard>
 					</Wrapper> -->
@@ -311,7 +320,6 @@
 	</Card> --> 
 
 <style>
-	
 	.multi-select {
 		display: flex;
 		align-items: center;

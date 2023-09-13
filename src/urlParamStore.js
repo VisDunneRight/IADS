@@ -11,4 +11,21 @@ setInterval(() => {
     prevUrl = currUrl;
     urlParams.set(new URLSearchParams(window.location.search));
   }
+  
 }, 60);
+
+// const observeUrlChange = () => {
+//   let oldHref = document.location.href;
+//   const body = document.querySelector("body");
+//   const observer = new MutationObserver(mutations => {
+//     if (oldHref !== document.location.href) {
+//       oldHref = document.location.href;
+//       console.log(new URLSearchParams(window.location.search).toString())
+//       urlParams.set(new URLSearchParams(window.location.search));
+
+//     }
+//   });
+//   observer.observe(body, { childList: true, subtree: true });
+// };
+
+// window.onload = observeUrlChange;

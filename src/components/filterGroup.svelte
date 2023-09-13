@@ -4,6 +4,7 @@
 	import Button, { Label } from '@smui/button';
 	import { onMount } from 'svelte';
 	import { Header, Content } from '@smui-extra/accordion';
+	import { categoryFilters } from '../filterStore';
 
 	const dispatch = createEventDispatcher();
 
@@ -52,9 +53,9 @@
 	// }
 	listSelected = [...selected];
 
-	onMount(async () => {
-		updateShowCount(showCount);
-	});
+	// onMount(async () => {
+	// 	updateShowCount(showCount);
+	// });
 	
 </script>
 
@@ -73,8 +74,7 @@
 
 <Content>
 	<Set chips={listVal} let:chip filter 
-				bind:selected={listSelected} 
-				on:click={(e) => updateSelection(selected)}>
+				bind:selected={$categoryFilters}>
 		<Chip {chip} touch>
 			<Text>{chip}</Text>
 		</Chip>

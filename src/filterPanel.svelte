@@ -4,12 +4,14 @@
 	import IconButton, { Icon } from '@smui/icon-button';
 	import Chip, { Set, TrailingAction, Text } from '@smui/chips';
 	import { createEventDispatcher } from 'svelte';
+	import { categoryFilters } from './filterStore';
 	const dispatch = createEventDispatcher();
 	export let freq = [];
 	export let filteredFreq = [];
 	export let filterBy = [];
 	export let selectTopics = [];
 	const clearSelections = () => {
+		categoryFilters.set([]);
 		filterBy.forEach((prop) => {
 			if (prop.values){
 				prop.selected = [];
@@ -54,10 +56,10 @@
 		>
 	</div>
 	<div>
-		<Set chips={selectTopics} let:chip input >
+		<Set chips={$categoryFilters} let:chip input >
 			<Chip {chip} >
 				<Text>{chip}</Text>
-				<TrailingAction icon$class="material-icons" on:click={(e) => removeSelection(chip)}>cancel</TrailingAction>
+				<TrailingAction icon$class="material-icons" on:click={(e) => categoryFilters.update((n) => { n.splice(chip, 1); return n})}>cancel</TrailingAction>
 			</Chip>
 		</Set>
 	</div>
@@ -82,6 +84,7 @@
 								{...option}
 								freqGroup={freq[option.name]}
 								on:message
+								}
 							/>
 						</Panel>
 						{/each}
