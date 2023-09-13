@@ -53,9 +53,9 @@
 	$: color = (i) => {
 		let year = i + minYear;
 		if (year < $filters.timeFilters.start || year > $filters.timeFilters.end) {
-			return '#808080';
+			return '#4A4A4D';
 		} else {
-			return '#EB4F27';
+			return '#c026d3';
 		}
 	};
 </script>

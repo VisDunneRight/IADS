@@ -12,14 +12,15 @@
 	import AddEntry from './components/addEntry.svelte';
 	import { filters, categoryFilters, timeFilters } from './filterStore';
 	import { onMount } from 'svelte';
+	import surveys from './data/other-surveys.json';
 
 
 	
-	import { Alert } from 'flowbite-svelte';
+	import { Alert, Dropdown, DropdownItem } from 'flowbite-svelte';
 	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, ImagePlaceholder, Skeleton, TextPlaceholder } from 'flowbite-svelte';
 	import { Modal, Drawer, Button, CloseButton, Sidebar, SidebarBrand, SidebarCta, SidebarDropdownItem, SidebarDropdownWrapper, SidebarGroup, SidebarItem, SidebarWrapper } from 'flowbite-svelte';
   import { sineIn } from 'svelte/easing';
-  import { FilterSolid } from 'flowbite-svelte-icons';
+  import { ArrowRightOutline, FilterSolid, GithubSolid } from 'flowbite-svelte-icons';
   import flatten from 'lodash/flatten';
   import loFilter from 'lodash/filter';
   import difference from 'lodash/difference';
@@ -164,8 +165,7 @@
   	let detailView = structure.detailView.show;
   
   	let filteredData = dataMeta.data;
-  
-	console.log(Object.keys(dataMeta.data[0]))
+
 
 	const fuse = new Fuse(dataMeta.data, {
 		keys: Object.keys(dataMeta.data[0])
@@ -188,24 +188,38 @@
 
 <svelte:window bind:innerHeight bind:innerWidth />
 
-<Navbar bind:clientHeight={navHeight}  fluid=true navDivClass="mx-0 flex justify-between" navClass=" px-2 sm:px-4 py-2.5 sticky top-0 z-20" let:hidden let:toggle>
+<Navbar bind:clientHeight={navHeight}  fluid=true navDivClass=" items-center mx-0 flex justify-between h-12" navClass=" shadow-xl h-full bg-gradient-to-tr from-[#121212] via-[#121212]0 to-[#121212] px-2 sm:px-4 py-2.5 sticky top-0 z-20 " let:hidden let:toggle>
 	{#if condition}
 	<Button class="!p-2" on:click={() => open = !open}><FilterSolid class="w-5 h-5" /></Button>
 	{/if}
-	<NavBrand href="/">
-	<!-- <img src="/images/flowbite-svelte-icon-logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" /> -->
+	<NavBrand href="/" class="m-2">
+	<img src="/logo.png" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
 	<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">IADesign.Space</span>
 	</NavBrand>
-	<Button size='sm' on:click={() => (scrollingModal = true)} >Contribute</Button>
+	<div class="flex items-center">
+		<NavUl>
+			<!-- <NavLi href="/about">About</NavLi> -->
+			<NavLi id="nav-menu1" href="/contact">Related Surveys</NavLi>
+			<Dropdown  triggeredBy="#nav-menu1" class="h-[50vh] z-20 dark:bg-[#3C3C3F] overflow-y-auto">
+			{#each surveys as survey} 
+			<DropdownItem target="_blank" href="{survey.url}">{survey.name}</DropdownItem>
+			{/each}
+			</Dropdown>
+			<NavLi target="_blank" href="https://github.com/VisDunneRight/IADesign.Space" ><GithubSolid  /> </NavLi>
+		</NavUl>
+		  <Button size="sm" class="h-10" on:click={() => (scrollingModal = true)} >Contribute</Button>
+	  </div>
+
+
 </Navbar>
 
 	<AddEntry {detailView} {freq} addEntryInfo={structure.topView.addEntry} bind:scrollingModal={scrollingModal}/>
 
 
 
-	<Drawer transitionType="fly" transitionParams={transitionParams} leftOffset='top-[{navHeight}px]' width='[{sidebarWidth}px]' activateClickOutside={false} backdrop={false}  divClass='z-20 overflow-y-auto bg-white dark:bg-gray-800' bind:hidden={drawer} id="sidebar2">
-	<Sidebar asideClass="fixed w-80 overflow-x-scroll h-screen">
-		<SidebarWrapper divCass="max-h-10 w-full">
+	<Drawer transitionType="fly" transitionParams={transitionParams} leftOffset='top-[{navHeight}px]' width='[{sidebarWidth}px]' activateClickOutside={false} backdrop={false}  divClass='z-20 overflow-y-auto' bind:hidden={drawer} id="sidebar2">
+	<Sidebar asideClass="fixed w-80 overflow-x-scroll h-screen p-2">
+		<SidebarWrapper divClass="max-h-10 w-full">
 		  <SidebarGroup>
 			
 				<div class="num-papers">
@@ -223,9 +237,9 @@
   </Drawer>
 
 
-<Splitpanes  theme="default-theme" style="width: {innerWidth - sidebarWidth - 17}px; margin-left: {sidebarWidth}px">
-	<Pane>
-		<div class="card-container">
+<Splitpanes theme="my-theme" style="width: {innerWidth - sidebarWidth - 17}px; margin-left: {sidebarWidth}px">
+	<Pane class="card-pane">
+		<div  class="card-container">
 			{#each filteredData as paper}
 				<PaperCard
 					{paper}
@@ -258,8 +272,31 @@
 
 
 <style>
+	:global(.splitpanes.my-theme .splitpanes__splitter) {
+		background-color: 3C3C3F;
+		box-sizing: border-box;
+		width: 12px;
+		position: relative;
+		flex-shrink: 0;
+	}
+
+	:global(::-webkit-scrollbar) {
+		width: 10px;
+	background-color: #F5F5F5;
+		}
+
+		:global(::-webkit-scrollbar-track) {
+			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+		background-color: #3C3C3F;
+		}
+
+		:global(::-webkit-scrollbar-thumb) {
+			background-color: #c026d3;
+	
+		}
+
 	.card-container {
-		background-color: rgb(240, 240, 240);
+		background-color: #121212;
 		padding-right: 0px;
 		display: flex;
 		flex-direction: row;
@@ -268,6 +305,8 @@
 		overflow-x: hidden;
 	}
 
+
+	
 	.show-button {
 		position: fixed;
 		top: 80px;
@@ -293,4 +332,9 @@
 		border-color: var(--mdc-theme-secondary, #333);
 		color: var(--mdc-theme-secondary, rgb(15, 9, 9));
 	}
+
+	
+	
 </style>
+
+

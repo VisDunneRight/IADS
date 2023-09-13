@@ -16,7 +16,7 @@ filterBy.forEach((prop)=>{
 })
 $:selectedDimX = choicesDim[0];
 $:selectedDimY = choicesDim[0];
-$:console.log(selectedDimX, selectedDimY)
+
 </script>
 <div class="vis-panel">
   <Text style="padding-left:40px">Dimension X-Axis:</Text>

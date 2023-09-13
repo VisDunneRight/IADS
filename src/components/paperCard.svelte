@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 	import Clipboard from 'svelte-clipboard';
 
 	import PaperDetail from './paperDetail.svelte';
@@ -46,23 +48,19 @@
 
 
 
-	<Modal size='lg' id='modal' title="Paper Detail" bind:open={modalState} outsideclose>
+	<Modal defaultClass="dark:bg-[#212125]" size='lg' id='modal'  bind:open={modalState} outsideclose>
 		<PaperDetail {paper} {detailView} {meta} />
-	<!-- <svelte:fragment slot="footer">
-			<Button on:click={() => alert('Handle "success"')}>I accept</Button>
-			<Button color="alternative">Decline</Button>
-		</svelte:fragment> -->
 	</Modal>
 
 
-	<Card on:click={() => {modalState = true; window.history.replaceState(null, null, '?paper=' + paper.DOI);}} class="w-full m-1 relative" padding="none">
+	<Card on:click={() => {modalState = true; window.history.replaceState(null, null, '?paper=' + paper.DOI);}} class="w-full m-1 relative dark:bg-[#212125] dark:border-slate-800 dark:shadow-xl" padding="none">
 	<Media class="card-media-16x9" aspectRatio="16x9" style="background-image: url(/images/{paper.img}); height: 200px" />
-		<h5 class="pl-1 pt-1 pr-1 text-md font-bold tracking-tight text-gray-900 dark:text-white">{paper.Name}</h5>
-		<p class="pl-1 mb-14 font-normal text-gray-700 dark:text-gray-400 leading-tight">{paper.Year}</p>
+		<h5 class="pl-1 pt-1 pr-1 text-md font-bold tracking-tight text-white">{paper.Name}</h5>
+		<p class="pl-1 mb-14 font-normal text-gray-400 leading-tight">{paper.Year}</p>
 		<div style="position: absolute; bottom: 0; width: 100%; display:flex; justify-content: space-between; align-items: center;">
 			<div>
-				<Badge class='ml-0.5' color='dark' rounded>{paper.Opportunity}</Badge>
-				<Badge class='ml-0' color='dark' rounded>{paper["Contribution Type"]}</Badge>
+				<Badge class='ml-0.5' rounded>{paper.Opportunity}</Badge>
+				<Badge class='ml-0'  rounded>{paper["Contribution Type"]}</Badge>
 			</div>
 			<div>
 				<Button on:click={(event) => {event.stopPropagation(); window.open('https://doi.org/' + paper.DOI);}} outline={true} size='xs' pill={true} class="!p-2 mb-2 mr-0.5 border-0"><LinkSolid class="w-4 h-4" /></Button>

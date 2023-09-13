@@ -167,7 +167,7 @@
 				/>
 			</div>
 		</div>
-		<div class="entry-row">
+		<div class="entry-row" >
 			<div class="title-text mdc-typography--body1"><strong>Categories:</strong></div>
 			<div class="catagory-field">
 				{#each categories as category}
@@ -182,8 +182,8 @@
 						{:else}
 							<div class="text-field">
 								<Textfield
-									style="width: 100%; height:40px"
-									helperLine$style="width: 100%;"
+									style="width: 100%; height:40px; "
+									helperLine$style="width: 100%; background-color: black;"
 									variant="outlined"
 									on:change={generateJson}
 									bind:value={category.value}
@@ -227,7 +227,7 @@
 <svelte:fragment slot="footer">
 	<div style="width: 100%; display:flex; justify-content:space-between; ">
 		<div>
-			<Button on:click={() => reset}>
+			<Button style="color: white" on:click={() => reset}>
 				<Label>Reset</Label>
 			</Button>
 		</div>
@@ -239,17 +239,17 @@
 					console.log(json);
 				}}
 			>
-				<Button on:click={copy}>
+				<Button style="color: white" on:click={copy}>
 					<Label>Copy to Clipboard</Label>
 				</Button>
 			</Clipboard>
 			{#if addEntryInfo.github}
-				<Button on:click={() => window.open(url, '_blank')}>
+				<Button style="color: white" on:click={() => window.open(url, '_blank')}>
 					<Label>Open Issue</Label>
 				</Button>
 			{:else if addEntryInfo.email}
 				<Button on:click={() => window.open(addEntryInfo.email, '_blank')}>
-					<Label>Open email</Label>
+					<Label>Copy</Label>
 				</Button>
 			{/if}
 		</div>

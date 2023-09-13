@@ -29,14 +29,17 @@
 </script>
 
 <Select
+	containerStyles="background-color: #1F2937; border-color: grey;"
+	inputStyles="background-color: #1F2937;"
+	
 	on:change={handleChange}
 	multiple
 	on:filter={handleFilter}
 	bind:filterText
 	bind:value
 	{items}
->
-	<div slot="item" let:item>
+>	 
+	<div slot="item" let:item style="">
 		{item.created ? 'Add new: ' : ''}
 		{item.label}
 	</div>

@@ -250,8 +250,7 @@ let w = 100, h = 100;
   <ZoomSvg 
       viewBox="0 0 
         {w}
-        {h}"
-      class="svg-container" >
+        {h}">
     <g class="x-axis">
       {#each visData.xAxis as cate, i}
         {#if typeof cate !== 'string'}
@@ -381,7 +380,7 @@ let w = 100, h = 100;
                 text-anchor="middle"
                 dominant-baseline="central"
                 class="cross-count"
-                fill={col/maxColorValue > 0.5 ? "white": "black"}
+                fill={col/maxColorValue > 0.5 ? "black": "white"}
                 >{col}</text>
               </g>
             {/if}
@@ -534,13 +533,14 @@ let w = 100, h = 100;
   }
   .model-text{
     cursor:pointer;
+    fill: white;
   }
   .corr-container {
     width: 100%;
     height: 100%;
   }
   .category-label{
-    fill:#666;
+    fill: white;
   }
   .end-line {
     stroke:#e0dcdc;
@@ -555,7 +555,7 @@ let w = 100, h = 100;
   }
 
   .cate-line{
-    stroke:#ccc;
+    stroke:white;
     stroke-linecap: square;
   }
   .matrix {
@@ -565,10 +565,10 @@ let w = 100, h = 100;
     pointer-events : none;
   }
   .topic-label{
-
+    fill:white;
   }
   .total-count {
-    fill:#666;
+    fill:white;
   }
   .cross-count {
 

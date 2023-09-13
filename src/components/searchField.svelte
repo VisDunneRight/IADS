@@ -23,18 +23,12 @@
 <div class="solo-container solo-container-prop">
 	<Paper class="solo-paper" elevation={6}>
 		<Icon class="material-icons">search</Icon>
-		<Input bind:value={$filters.searchFilters} on:input={onSearch} placeholder="Search" class="solo-input" />
+		<Input style="background-color: #676778" bind:value={$filters.searchFilters} on:input={onSearch} placeholder="Search" class="solo-input" />
 		<Icon class="material-icons clear" on:click={() => filters.update((n) => {n.searchFilters = ""; return n})}>clear</Icon>
 	</Paper>
 </div>
 
 <style>
-	.solo-container {
-		padding: 12px 8px;
-		background-color: var(--mdc-theme-background, #f8f8f8);
-		border: 1px solid var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));
-		margin-right:2px;
-	}
 
 	.solo-container-prop {
 		display: flex;
