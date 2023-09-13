@@ -14,7 +14,6 @@
 
 	import  { Icon } from '@smui/button';
 	import List, { Item, Separator, Text } from '@smui/list';
-	import  { Text } from '@smui/list';
 	import Clipboard from 'svelte-clipboard';
 	
     import { Wrapper } from '@smui/tooltip';
@@ -25,6 +24,7 @@
   import { ArrowRightOutline, LinkSolid, CopySolid, LockOpenSolid, LockSolid} from 'flowbite-svelte-icons';
   import { tree } from 'd3';
   import { afterUpdate, beforeUpdate, onMount } from 'svelte';
+    import PaperDetail from './paperDetail.svelte';
 
 	
 
@@ -52,8 +52,6 @@
 	let modalState = false;
 	
 
-
-	
 	onMount(() => {
 		if (params.get('paper') == paper.DOI){
 			modalState = true;
@@ -62,44 +60,15 @@
 	});
 
 	$: if (!modalState){
-		console.log('remove')
 		window.history.replaceState(null, null, '/');
 	} else {
 		window.history.replaceState(null, null, '?paper=' + paper.DOI);
 	} 
 		
 </script>
-
-
-</script>
-
-
-	<!-- <Snackbar bind:this={snackbarWithClose}>
-
-		<Label>Copied bibtex.</Label>
-		<Actions>
-			<IconButton class="material-icons" title="Dismiss">close</IconButton>
-		</Actions>
-	</Snackbar>
-
-	<Dialog bind:open  aria-describedby="sheet-content" style="z-index:20"  on:SMUIDialog:closed={() => { window.history.replaceState(null, null, '/')}}>
-		<Content id="sheet-content">
-			<PaperDetail {paper} {detailView} {meta} />
-			<div class="close-button">
-				<IconButton on:click={() => {window.history.replaceState(null, null, '/');} } class="material-icons">close</IconButton>
-			</div>
-		</Content>
-	</Dialog> -->
-
-
-	<!-- <Button on:click={() => (defaultModal = true)}>Default modal</Button> -->
 	
 	<Modal size='lg' bind:this={modal} id='modal' title="Terms of Service" bind:open={modalState} outsideclose>
 		<PaperDetail {paper} {detailView} {meta} />
-	<!-- <svelte:fragment slot="footer">
-			<Button on:click={() => alert('Handle "success"')}>I accept</Button>
-			<Button color="alternative">Decline</Button>
-		</svelte:fragment> -->
 	</Modal>
 
 	<Card on:click={() => {modalState = true; window.history.replaceState(null, null, '?paper=' + paper.DOI);}} class="w-full m-1 relative" padding="none">
@@ -135,111 +104,6 @@
 	</Card>
 
 
-		<PrimaryAction on:click={() => {window.history.replaceState(null, null, '?paper=' + paper.DOI);}}>
-		  	<Media class="card-media-16x9" aspectRatio="16x9" style="background-image: url(/images/{paper.img}); height: 200px" />
-			<Content class="mdc-typography--body2">
-			<h2 class="mdc-typography--headline6" style="margin: 0; font-size: 15px; line-height: 18px; ">
-				{paper.Name}
-			</h2>
-			<h3
-				class="mdc-typography--subtitle2"
-				style="margin: 0 0 10px; color: #888;"
-			>
-				{paper.Year}
-			</h3>
-				{				  
-					paper.Authors
-				}
-			</Content>
-		</PrimaryAction>
-		
-				<Actions >
-				 <ActionButtons style="position: absolute; bottom: 0;">
-				<Set chips={[paper.Opportunity, paper["Contribution Type"]]} let:chip nonInteractive>
-					<Chip {chip}>
-						<Text>{chip}</Text>
-					</Chip>
-					</Set>
-				  </ActionButtons>
-				  <ActionIcons style="position: absolute; bottom: 0; right: 0">
-					<Wrapper>
-					<IconButton
-					  class="material-icons"
-					  on:click={() => window.open('https://doi.org/' + paper.DOI)}>
-					  link
-					</IconButton> -->
-					<!-- <Tooltip  xPos="center" yPos="above">Digital Library Link</Tooltip> -->
-					<!-- </Wrapper>
-					<Wrapper>
-					{#if paper["Open Access"] == "na"}
-					<IconButton
-						disabled
-						class="material-icons"
-						on:click>
-						lock
-					</IconButton>
-					{:else}
-					<IconButton
-						class="material-icons"
-						on:click={() => window.open(paper['Open Access'])}>
-						lock_open
-					</IconButton>
-					{/if} -->
-					<!-- <Tooltip  xPos="center" yPos="above">Open Access Link</Tooltip> -->
-					<!-- </Wrapper>
-					<Wrapper>
-						<Clipboard
-						text={paper.Bibtex}
-						let:copy
-						on:copy={() => {
-							snackbarWithClose.open();
-						}}>
-					<IconButton
-						class="material-icons"
-						on:click={copy}>
-						content_copy
-
-					</IconButton>
-					 -->
-
-					<!-- <Tooltip  xPos="center" yPos="above">Copy BibTex</Tooltip> -->
-				<!-- </Clipboard>
-					</Wrapper> -->
-					<!-- <Wrapper>
-						<IconButton
-							class="material-icons"
-							on:click={() => clicked++}>
-							edit
-						</IconButton>
-						<Tooltip  xPos="center" yPos="above">Tooltip.</Tooltip>
-					</Wrapper> -->
-					<!-- <IconButton
-					  class="material-icons"
-					  on:click={() => menu.setOpen(true)}
-					  title="More options">more_vert
-					  <Menu bind:this={menu}>
-						<List>
-							<Clipboard
-										text={paper.Bibtex}
-										let:copy
-										on:copy={() => {
-											snackbarWithClose.open();
-										}}
-									>
-								<Item on:SMUI:action={copy}>
-								<Icon class="material-icons">download</Icon>
-								<Text>BibTex</Text>
-								</Item>
-							</Clipboard>
-							<Item on:SMUI:action={() => console.log("work in progress")}>
-								<Text>Update Entry</Text>
-							</Item>
-						</List>
-					</Menu>
-					</IconButton> -->
-				  <!-- </ActionIcons>
-				</Actions>
-			  </Card> -->
 
 			 
 	
