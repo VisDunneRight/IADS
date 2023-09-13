@@ -217,8 +217,8 @@
 
 
 
-	<Drawer transitionType="fly" transitionParams={transitionParams} leftOffset='top-[{navHeight}px]' width='[{sidebarWidth}px]' activateClickOutside={false} backdrop={false}  divClass='z-20 overflow-y-auto' bind:hidden={drawer} id="sidebar2">
-	<Sidebar asideClass="fixed w-80 overflow-x-scroll h-screen p-2">
+	<Drawer transitionType="fly" transitionParams={transitionParams} leftOffset='top-[{navHeight}px]' width='[{sidebarWidth}px]' activateClickOutside={false} backdrop={false}  divClass='z-20 overflow-y-auto dark:bg-[#202024]' bind:hidden={drawer} id="sidebar2">
+	<Sidebar asideClass="fixed w-80 overflow-x-scroll h-screen p-2 dark:bg-[#202024]">
 		<SidebarWrapper divClass="max-h-10 w-full">
 		  <SidebarGroup>
 			
