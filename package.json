@@ -56,6 +56,7 @@
     "flowbite-svelte": "^0.44.15",
     "fuse.js": "^6.6.2",
     "lodash": "^4.17.21",
+    "new-github-issue-url": "^1.0.0",
     "shade-blend-color": "^1.0.0",
     "svelte-material-ui": "^7.0.0-beta.0",
     "svelte-parts": "^0.0.6",

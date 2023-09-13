@@ -4,6 +4,8 @@
 	import MultiCombo from './multiCombo.svelte';
 	import Clipboard from 'svelte-clipboard';
   import { Modal } from 'flowbite-svelte';
+  import newGithubIssueUrl from 'new-github-issue-url';
+
 
 	let stitle = '';
 	let title = '';
@@ -79,6 +81,14 @@
 		});
 		generateJson();
 	};
+
+	$: url = newGithubIssueUrl({
+	user: 'VisDunneRight',
+	repo: 'IADesign.Space',
+	labels: ['New Paper'],
+	title: "New Paper: " + stitle,
+	body: json
+});
 </script>
 
 
@@ -234,7 +244,7 @@
 				</Button>
 			</Clipboard>
 			{#if addEntryInfo.github}
-				<Button on:click={() => window.open(addEntryInfo.github, '_blank')}>
+				<Button on:click={() => window.open(url, '_blank')}>
 					<Label>Open Issue</Label>
 				</Button>
 			{:else if addEntryInfo.email}

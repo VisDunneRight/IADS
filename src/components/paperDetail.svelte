@@ -4,12 +4,15 @@
 	import Clipboard from 'svelte-clipboard';
 	import IconButton from '@smui/icon-button';
 	import Multiselect from './multiselect.svelte';
+	
 
 	export let paper;
 	export let detailView;
 	export let meta;
 
 	let snackbarWithClose;
+
+	
 
 </script>
 
