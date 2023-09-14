@@ -218,7 +218,7 @@
 
 
 	<Drawer transitionType="fly" transitionParams={transitionParams} leftOffset='top-[{navHeight}px]' width='[{sidebarWidth}px]' activateClickOutside={false} backdrop={false}  divClass='z-20 overflow-y-auto dark:bg-[#202024]' bind:hidden={drawer} id="sidebar2">
-	<Sidebar asideClass="fixed w-80 overflow-x-scroll h-screen p-2 dark:bg-[#202024]">
+	<Sidebar asideClass="fixed w-80 overflow-x-scroll h-screen pl-2 pr-2 dark:bg-[#202024]">
 		<SidebarWrapper divClass="max-h-10 w-full">
 		  <SidebarGroup>
 			
@@ -281,8 +281,9 @@
 	}
 
 	:global(::-webkit-scrollbar) {
-		width: 10px;
-	background-color: #F5F5F5;
+		width: 6px;
+		height: 50px;
+		background-color: #F5F5F5;
 		}
 
 		:global(::-webkit-scrollbar-track) {
