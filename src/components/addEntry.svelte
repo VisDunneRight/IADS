@@ -204,7 +204,7 @@
 					textarea
 					on:change={generateJson}
 					bind:value={bibtex}
-					label="copy and paste bibtexe"
+					label="copy and paste BibTex"
 				/>
 			</div>
 		</div>
