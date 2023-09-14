@@ -199,7 +199,7 @@
 	<div class="flex items-center">
 		<NavUl>
 			<!-- <NavLi href="/about">About</NavLi> -->
-			<NavLi id="nav-menu1" href="/contact">Related Surveys</NavLi>
+			<NavLi id="nav-menu1">Related Surveys</NavLi>
 			<Dropdown  triggeredBy="#nav-menu1" class="h-[50vh] z-20 dark:bg-[#3C3C3F] overflow-y-auto">
 			{#each surveys as survey} 
 			<DropdownItem target="_blank" href="{survey.url}">{survey.name}</DropdownItem>
