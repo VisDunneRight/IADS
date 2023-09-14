@@ -48,12 +48,12 @@
 
 
 
-	<Modal defaultClass="dark:bg-[#212125]" size='lg' id='modal'  bind:open={modalState} outsideclose>
+	<Modal title="Paper Details" size='lg' id='modal'  bind:open={modalState} outsideclose>
 		<PaperDetail {paper} {detailView} {meta} />
 	</Modal>
 
 
-	<Card on:click={() => {modalState = true; window.history.replaceState(null, null, '?paper=' + paper.DOI);}} class="w-full m-1 relative dark:bg-[#212125] dark:border-slate-800 dark:shadow-xl" padding="none">
+	<Card on:click={() => {modalState = true; window.history.replaceState(null, null, '?paper=' + paper.DOI);}} class="w-max m-1 relative dark:bg-[#212125] dark:border-slate-800 dark:shadow-xl" padding="none">
 	<Media class="card-media-16x9" aspectRatio="16x9" style="background-image: url(/images/{paper.img}); height: 200px" />
 		<h5 class="pl-1 pt-1 pr-1 text-md font-bold tracking-tight text-white">{paper.Name}</h5>
 		<p class="pl-1 mb-14 font-normal text-gray-400 leading-tight">{paper.Year}</p>
